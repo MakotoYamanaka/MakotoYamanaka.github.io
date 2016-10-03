@@ -1,0 +1,59 @@
+<html>
+<!--  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+		HEAD
+-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>URLスキームテスト2</title>
+</head>
+
+<!--  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+		ここからBODY
+-->
+<body bgcolor='#FCD8F3'>
+<center>
+
+
+<script type="text/javascript">
+function open_shoppies( pageID, paramName ){
+	paramValue = prompt( paramName + "を入力", "" );
+	if( paramValue == null ){
+		return;
+	}
+	json = "{\"page\":\"" + pageID + "\",\"param\":{\"" + paramName + "\":" + paramValue + "}}";
+	url = "shoppies://" + encodeURIComponent(json);
+	//prompt( "DEBUG url", url );
+	window.open( url, "_top" );
+}
+</script>
+
+
+<!--  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+		ここからTABLE
+-->
+<table height="100%" width="100%" border="0">
+<tr>
+<td>
+<center>
+
+<!--  ───────────────────────────────────────────────
+		MYM_SH001
+		shoppies://{"page":"MYM_SH001","param":{}}
+		shoppies://%7B%22page%22%3A%22MYM_SH001%22%2C%22param%22%3A%7B%7D%7D
+-->
+<p><font face="Menlo"><a href='shoppies://%7B%22page%22%3A%22MYM_SH001%22%2C%22param%22%3A%7B%7D%7D'>MYM_SH001 ショップ</a></font></p>
+
+<!--  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+		TABLE終わり
+-->
+</td>
+</tr>
+</table>
+
+<!--  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+		BODY終わり
+-->
+</center>
+</body>
+</html>

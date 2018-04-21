@@ -1,4 +1,4 @@
-# MakotoYamanaka.github.io
+# makotoyamanaka.github.io
 
 ## 参考情報：
 

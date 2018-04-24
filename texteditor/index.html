@@ -47,8 +47,7 @@ function countCharacters(){
 */
 function evalAsJavaScript(){
 	var res = eval( document.textareaForm.editTextarea.value );
-	if( res == null )
-	{
+	if( res == null ){
 		res = "null";
 	}
 	window.alert( "実行結果:\n" + res.toString() );
@@ -61,42 +60,34 @@ function evalAsJavaScript(){
 /*--------------------------------------------------
 	小文字にする
 */
-function changeToLowerCase()
-{
+function changeToLowerCase(){
 	document.textareaForm.editTextarea.value = document.textareaForm.editTextarea.value.toLocaleLowerCase();
 }
 /*--------------------------------------------------
 	大文字にする
 */
-function changeToUpperCase()
-{
+function changeToUpperCase(){
 	document.textareaForm.editTextarea.value = document.textareaForm.editTextarea.value.toLocaleUpperCase();
 }
 /*--------------------------------------------------
 	URI encode,decode ...
 */
-function changeTo_escape()
-{
+function changeTo_escape(){
 	document.textareaForm.editTextarea.value = escape( document.textareaForm.editTextarea.value );
 }
-function changeTo_encodeURI()
-{
+function changeTo_encodeURI(){
 	document.textareaForm.editTextarea.value = encodeURI( document.textareaForm.editTextarea.value );
 }
-function changeTo_encodeURIComponent()
-{
+function changeTo_encodeURIComponent(){
 	document.textareaForm.editTextarea.value = encodeURIComponent( document.textareaForm.editTextarea.value );
 }
-function changeTo_unescape()
-{
+function changeTo_unescape(){
 	document.textareaForm.editTextarea.value = unescape( document.textareaForm.editTextarea.value );
 }
-function changeTo_decodeURI()
-{
+function changeTo_decodeURI(){
 	document.textareaForm.editTextarea.value = decodeURI( document.textareaForm.editTextarea.value );
 }
-function changeTo_decodeURIComponent()
-{
+function changeTo_decodeURIComponent(){
 	document.textareaForm.editTextarea.value = decodeURIComponent( document.textareaForm.editTextarea.value );
 }
 /*==================================================================================================
@@ -105,8 +96,7 @@ function changeTo_decodeURIComponent()
 /*--------------------------------------------------
 	行ソート
 */
-function sortParagraphs()
-{
+function sortParagraphs(){
 	// 行単位で分割・ソート
 	var lineArray = document.textareaForm.editTextarea.value.split("\n");
 	lineArray.sort(function(a,b){
@@ -114,10 +104,8 @@ function sortParagraphs()
 	});
 	// stringに戻す
 	var setString = "";
-	for( var i=0; i < lineArray.length; i++ )
-	{
-		if( lineArray[i].length > 0 )
-		{
+	for( var i=0; i < lineArray.length; i++ ){
+		if( lineArray[i].length > 0 ){
 			setString = setString + lineArray[i] + "\n";
 		}
 	}
@@ -126,29 +114,24 @@ function sortParagraphs()
 /*--------------------------------------------------
 	行頭と行末に追加
 */
-function addToParagraphs()
-{
+function addToParagraphs(){
 	// 行単位で分割・ソート
 	var lineArray = document.textareaForm.editTextarea.value.split("\n");
 	// 追加文字を設定
 	var prefixString = prompt( "行頭に追加する文字を指定して下さい", "" );
-	if( prefixString == null )
-	{
+	if( prefixString == null ){
 		document.textareaForm.editTextarea.focus();
 		return;
 	}
 	var suffixString = prompt( "行末に追加する文字を指定して下さい", "" );
-	if( suffixString == null )
-	{
+	if( suffixString == null ){
 		document.textareaForm.editTextarea.focus();
 		return;
 	}
 	// 追加しつつstringに戻す
 	var setString = "";
-	for( var i=0; i < lineArray.length; i++ )
-	{
-		if( i > 0 )
-		{
+	for( var i=0; i < lineArray.length; i++ ){
+		if( i > 0 ){
 			setString = setString + "\n";
 		}
 		setString = setString + prefixString + lineArray[i] + suffixString;
@@ -158,32 +141,23 @@ function addToParagraphs()
 /*--------------------------------------------------
 	URLとして開く
 */
-function openAsURL()
-{
+function openAsURL(){
 	// 行単位で分割
 	var lineArray = document.textareaForm.editTextarea.value.split("\n");
-	if( lineArray.length <= 0 )
-	{
+	if( lineArray.length <= 0 ){
 		return;
 	}
 	// 各行を補正
 	var displayURL = ""; //ユーザ確認表示用文字列
-	for( var i=(lineArray.length - 1); 0 <= i; i-- )
-	{
+	for( var i=(lineArray.length - 1); 0 <= i; i-- ){
 		// 空行なら省く
-		if( lineArray[i].length <= 0 )
-		{
+		if( lineArray[i].length <= 0 ){
 			lineArray.splice(i,1);
-		}
-		else
-		{
+		}else{
 			// 2ch表記を修正
-			if( lineArray[i].indexOf("ttp:") == 0 )
-			{
+			if( lineArray[i].indexOf("ttp:") == 0 ){
 				lineArray[i] = "h" + lineArray[i];
-			}
-			else if( lineArray[i].indexOf("ttps:") == 0 )
-			{
+			}else if( lineArray[i].indexOf("ttps:") == 0 ){
 				lineArray[i] = "h" + lineArray[i];
 			}
 			// URL表記にエンコード
@@ -194,31 +168,26 @@ function openAsURL()
 		}
 	}
 	// ユーザ確認
-	if( ! window.confirm( "以下の" + lineArray.length.toString() + "個のURLを開きますか？\n\n" + displayURL ) )
-	{
+	if( ! window.confirm( "以下の" + lineArray.length.toString() + "個のURLを開きますか？\n\n" + displayURL ) ){
 		// キャンセル後、フォーカスが外れているので戻しておく
 		document.textareaForm.editTextarea.focus();
 		return;
 	}
 	// 開く
-	for( var i=0; i < lineArray.length; i++ )
-	{
+	for( var i=0; i < lineArray.length; i++ ){
 		window.open( lineArray[i], "_blank" );
 	}
 }
 /*--------------------------------------------------
 	行の前の空白を削除
 */
-function trimParagraphsLeft()
-{
+function trimParagraphsLeft(){
 	// 行単位で分割・ソート
 	var lineArray = document.textareaForm.editTextarea.value.split("\n");
 	// trimしつつstringに戻す
 	var setString = "";
-	for( var i=0; i < lineArray.length; i++ )
-	{
-		if( i > 0 )
-		{
+	for( var i=0; i < lineArray.length; i++ ){
+		if( i > 0 ){
 			setString = setString + "\n";
 		}
 		setString = setString + lineArray[i].trimLeft();
@@ -228,16 +197,13 @@ function trimParagraphsLeft()
 /*--------------------------------------------------
 	行の後ろの空白を削除
 */
-function trimParagraphsRight()
-{
+function trimParagraphsRight(){
 	// 行単位で分割・ソート
 	var lineArray = document.textareaForm.editTextarea.value.split("\n");
 	// trimしつつstringに戻す
 	var setString = "";
-	for( var i=0; i < lineArray.length; i++ )
-	{
-		if( i > 0 )
-		{
+	for( var i=0; i < lineArray.length; i++ ){
+		if( i > 0 ){
 			setString = setString + "\n";
 		}
 		setString = setString + lineArray[i].trimRight();
@@ -247,16 +213,13 @@ function trimParagraphsRight()
 /*--------------------------------------------------
 	行の前後の空白を削除
 */
-function trimParagraphs()
-{
+function trimParagraphs(){
 	// 行単位で分割・ソート
 	var lineArray = document.textareaForm.editTextarea.value.split("\n");
 	// trimしつつstringに戻す
 	var setString = "";
-	for( var i=0; i < lineArray.length; i++ )
-	{
-		if( i > 0 )
-		{
+	for( var i=0; i < lineArray.length; i++ ){
+		if( i > 0 ){
 			setString = setString + "\n";
 		}
 		setString = setString + lineArray[i].trim();
@@ -269,24 +232,20 @@ function trimParagraphs()
 /*--------------------------------------------------
 	文字ソート
 */
-function sortCharacters()
-{
+function sortCharacters(){
 	var lineArray = document.textareaForm.editTextarea.value.split("\n");
 	var setString = "";
-	for( var li=0; li < lineArray.length; li++ )
-	{
+	for( var li=0; li < lineArray.length; li++ ){
 		var lineString = lineArray[li];
 		var charArray = new Array();
 		
-		for( var ci=0; ci < lineString.length; ci++ )
-		{
+		for( var ci=0; ci < lineString.length; ci++ ){
 			charArray[ci] = lineString.charAt(ci);
 		}
 		charArray.sort();
 		
 		var lineString = "";
-		for( var ci=0; ci < charArray.length; ci++ )
-		{
+		for( var ci=0; ci < charArray.length; ci++ ){
 			lineString = lineString + charArray[ci];
 		}
 		setString = setString + lineString + "\n";
@@ -305,14 +264,14 @@ function sortCharacters()
 		テキスト編集FORM
 -->
 <form name="textareaForm" method="" action="" onSubmit="">
-	<textarea name="editTextarea" rows=30 wrap=virtual style="width:98%;font-family:monospace;font-size:14px;"></textarea>
+	<textarea name="editTextarea" rows=30 wrap=virtual style="width:99%;font-family:monospace;font-size:14px;"></textarea>
 </form>
 
 <!--================================================================================================
 		ボタンFORM
 -->
 <form name="buttonsForm">
-<!--////////////////////////////////////////////////////////////////////////////////////////////////
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		解析処理
 -->
 解析<br>
@@ -323,7 +282,7 @@ function sortCharacters()
 	onClick='evalAsJavaScript()'
 	>
 <br>
-<!--////////////////////////////////////////////////////////////////////////////////////////////////
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		文字変換処理
 -->
 <br>
@@ -355,7 +314,7 @@ function sortCharacters()
 	onClick='changeTo_decodeURIComponent()'
 	>
 <br>
-<!--////////////////////////////////////////////////////////////////////////////////////////////////
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		行単位編集処理
 -->
 <br>
@@ -380,7 +339,7 @@ function sortCharacters()
 	onClick='trimParagraphs()'
 	>
 <br>
-<!--////////////////////////////////////////////////////////////////////////////////////////////////
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		その他編集処理
 -->
 <br>
@@ -388,15 +347,15 @@ function sortCharacters()
 <input class="_body" type="button" name="文字ソート" value="文字ソート"
 	onClick='sortCharacters()'
 	>
-<!--//////////////////////////////////////////////////////////////////////////////////////////// -->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 </form> <!-- name="buttonsForm" -->
 
 
 <font color="#779988" style="font-size:70%;">
-ver. 4.0
+ver. 4.1
 </font>
 <!--
-	4.0		デザイン変更。
+	4.1		デザイン変更。
 	3.0		行ソートを数字考慮など改善。
 	2.1		dropboxからbitbucketに移行。
 	2.0		favicon追加。今後はバージョン表記をN.Nに。

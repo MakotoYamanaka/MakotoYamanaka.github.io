@@ -1,19 +1,12 @@
-<!--<!DOCTYPE html>-->
-<html>
-<!-- ===============================================================================================
+<!DOCTYPE html>
+<html style="height:100%;">
+<!--================================================================================================
 		HEAD
 -->
 <head>
-	<!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
 	<meta charset="UTF-8">
-	<!--<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">-->
 	<meta name="viewport" content="initial-scale=1.0,user-scalable=no">
 	<title>検索ポータル</title>
-	
-	<!--
-	<link rel="shortcut icon" href="https://makotoyamanaka.github.io/searchpotal/index.ico" type="image/vnd.microsoft.icon" />
-	<link rel="icon" href="https://makotoyamanaka.github.io/searchpotal/index.ico" type="image/vnd.microsoft.icon" />
-	-->
 	<link rel="shortcut icon" href="https://makotoyamanaka.github.io/searchpotal/favicon.png" type="image/x-icon">
 	<style type="text/css">
 	td {
@@ -52,20 +45,19 @@ function getFocus(){
 }
 </script>
 
-<!-- ===============================================================================================
+<!--================================================================================================
 		ここからBODY
 -->
-<body onload="getFocus();" bgcolor='#C0D0E0'>
-<center>
+<body onload="getFocus();" style="height:100%;margin:0;background:#C0D0E0;">
 
-<!-- ===============================================================================================
+<!--================================================================================================
 		NO SCRIPT
 -->
 <noscript>
 <p>JavaScriptがOFFになっています。以下のボタンは使用出来ません。</p>
 </noscript>
 
-<!-- ===============================================================================================
+<!--================================================================================================
 		入力キーワードで検索する各サイト汎用JavaScript
 -->
 <script type="text/javascript">
@@ -76,7 +68,7 @@ function getFocus(){
 	is_escape boolenan 検索キーワードをescapeするか。falseならencodeURIComponent
 		escape,encodeURIComponent について
 		http://groundwalker.com/blog/2007/02/javascript_escape_encodeuri_encodeuricomponent_.html
---------------------------------------------------*/
+*/
 function searchWithKeyword( topURL, prefixURL, suffixURL, is_escape ){
 	if( is_escape ){
 		keyword = escape( document.keywordForm.keywordText.value );
@@ -96,7 +88,7 @@ function searchWithKeyword( topURL, prefixURL, suffixURL, is_escape ){
 }
 /*--------------------------------------------------
 	keywordText2 も使う場合
---------------------------------------------------*/
+*/
 function searchWithKeyword2( topURL, prefixURL, middleURL, suffixURL, is_escape1, is_escape2 ){
 	if( is_escape2 ){
 		keyword2 = escape( document.keywordForm2.keywordText2.value );
@@ -107,7 +99,7 @@ function searchWithKeyword2( topURL, prefixURL, middleURL, suffixURL, is_escape1
 }
 /*--------------------------------------------------
 	URLなら開く そうでなければGoogle検索
---------------------------------------------------*/
+*/
 function searchWithDefault(){
 	keyword = document.keywordForm.keywordText.value;
 	// 入力が空の場合、
@@ -138,38 +130,38 @@ function searchWithDefault(){
 }
 </script>
 
-<!-- ===============================================================================================
+<!--================================================================================================
 		TABLE
 		・ウインドウ全体を占め、内容を中心に配置するtable。
 		・コンテンツ最小高さのtable。
 -->
-<table height="100%" width="100%" border="0"><tr><td><center> <table class="_body" width="100%" border="0">
-<!-- ===============================================================================================
+<table style="height:100%;width:100%;"><tr><td> <table class="_body" style="width:100%;text-align:center;">
+<!--================================================================================================
 		キーワード入力FORM
 		※ keywordFormにkeywordText,keywordText2両方入れるとonSubmitが動作しない
 -->
-<tr><td><center>
+<tr><td>
 <form name="keywordForm" method="" action="" onSubmit='searchWithDefault(); return false;'>
-	<input class="_body" type="text" value="" name="keywordText" style="width:100%;">
+	<input class="_body" type="text" value="" name="keywordText" style="width:99%;">
 </form>
 <form name="keywordForm2" method="" action="" onSubmit='searchWithDefault(); return false;'>
-	<input class="_body" type="text" value="" name="keywordText2" style="width:100%;">
+	<input class="_body" type="text" value="" name="keywordText2" style="width:99%;">
 </form>
-<!-- ===============================================================================================
+<!--================================================================================================
 		新規タブで開くチェックボックス
 -->
 <form name="optionForm" method="" action="">
 	<label><input type="checkbox" name="newTabCheckbox">新しいタブ／ウインドウで開く</label>
 </form>
-</center></td></tr>
-<!-- ===============================================================================================
+</td></tr>
+<!--================================================================================================
 		サイト別ボタンFORM
 -->
 <form name="buttonsForm">
-<!-- -----------------------------------------------------------------------------------------------
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		Google検索
 -->
-<tr bgcolor='#B8C8D8'><td><center>
+<tr bgcolor='#B8C8D8'><td>
 Google<br>
 <input class="_body" type="button" name="google" value="Google"
 	onClick='searchWithKeyword( 
@@ -207,11 +199,11 @@ Google<br>
 	"https://images.google.com/searchbyimage?image_url=",
 	"", false )'
 	>
-</center></td></tr>
-<!-- -----------------------------------------------------------------------------------------------
+</td></tr>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		その他検索
 -->
-<tr><td><center>
+<tr><td>
 その他検索<br>
 <input class="_body" type="button" name="yahoo" value="Yahoo!" 
 	onClick='searchWithKeyword( 
@@ -237,11 +229,11 @@ Google<br>
 	"http://www.bing.com/images/search?q=",
 	"", false )'
 	>
-</center></td></tr>
-<!-- -----------------------------------------------------------------------------------------------
+</td></tr>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		価格検索
 -->
-<tr bgcolor='#B8C8D8'><td><center>
+<tr bgcolor='#B8C8D8'><td>
 価格<br>
 <input class="_body" type="button" name="kakakucom" value="価格.com" 
 	onClick='searchWithKeyword( 
@@ -261,11 +253,11 @@ Google<br>
 	"http://auctions.search.yahoo.co.jp/search?auccat=&p=",
 	"", false )'
 	>
-</center></td></tr>
-<!-- -----------------------------------------------------------------------------------------------
+</td></tr>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		商品検索
 -->
-<tr><td><center>
+<tr><td>
 買い物<br>
 <input class="_body" type="button" name="amazon" value="Amazon" 
 	onClick='searchWithKeyword( 
@@ -303,11 +295,11 @@ Google<br>
 	"http://www.apple.com/jp/search/?q=",
 	"", false )'
 	>
-</center></td></tr>
-<!-- -----------------------------------------------------------------------------------------------
+</td></tr>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		技術情報検索
 -->
-<tr bgcolor='#B8C8D8'><td><center>
+<tr bgcolor='#B8C8D8'><td>
 技術情報<br>
 <input class="_body" type="button" name="appleDevDoc" value=" Developer Documentation" 
 	onClick='searchWithKeyword( 
@@ -339,11 +331,11 @@ Google<br>
 	"https://developer.mozilla.org/ja/search?q=",
 	"", false )'
 	>
-</center></td></tr>
-<!-- -----------------------------------------------------------------------------------------------
+</td></tr>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		動画検索
 -->
-<tr><td><center>
+<tr><td>
 動画<br>
 <input class="_body" type="button" name="youtube" value="YouTube" 
 	onClick='searchWithKeyword( 
@@ -375,11 +367,11 @@ Google<br>
 	"https://vimeo.com/search?q=",
 	"", false )'
 	>
-</center></td></tr>
-<!-- -----------------------------------------------------------------------------------------------
+</td></tr>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		百科事典
 -->
-<tr bgcolor='#B8C8D8'><td><center>
+<tr bgcolor='#B8C8D8'><td>
 百科事典<br>
 <input class="_body" type="button" name="wikipedia" value="Wikipedia" 
 	onClick='searchWithKeyword( 
@@ -399,11 +391,11 @@ Google<br>
 	"http://dic.pixiv.net/search?query=",
 	"", false )'
 	>
-</center></td></tr>
-<!-- -----------------------------------------------------------------------------------------------
+</td></tr>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		その他サイト
 -->
-<tr><td><center>
+<tr><td>
 その他サイト<br>
 <input class="_body" type="button" name="yahooTransit" value="Yahoo!路線情報-乗換案内" 
 	onClick='searchWithKeyword2( 
@@ -424,29 +416,29 @@ Google<br>
 	"https://twitter.com/search?q=",
 	"", false )'
 	>
-</center></td></tr>
-<!-- -----------------------------------------------------------------------------------------------
+</td></tr>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		クリア
 -->
-<tr bgcolor='#B8C8D8'><td><center>
+<tr bgcolor='#B8C8D8'><td>
 <input class="_body" type="reset" name="clear" value="クリア" 
 	onClick='document.keywordForm.keywordText.value="";document.keywordForm2.keywordText2.value="";document.keywordForm.keywordText.focus();'
 	>
-</center></td></tr>
-<!-- ===============================================================================================
+</td></tr>
+<!--================================================================================================
 		サイト別ボタンFORM ここまで
 -->
 </form> <!-- name="buttonsForm" -->
-<!-- -----------------------------------------------------------------------------------------------
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		ページ情報
 -->
-<tr><td><center>
+<tr><td>
 <font color="#778899" style="font-size:70%;">
-	<p>ver. 8.2</p>
+	<p>ver. 8.3</p>
 	<p>クエリの仕様: keyword=入力フィールド1 keyword2=入力フィールド2</p>
 </font>
 <!--
-	8.2		スタイルの書き方変更。
+	8.3		スタイルの書き方変更。
 	8.1		デザイン変更。
 	7.2		Yahoo!路線情報-乗換案内を更新。
 	7.1		楽天を更新。
@@ -480,8 +472,8 @@ Google<br>
 			Google画像URL、Yahoo!地図、bing画像を追加。URLとして開く処理をコメントアウト。
 	1.5.1	まで変更履歴書かなかった
 -->
-</center></td></tr>
-<!-- ===============================================================================================
+</td></tr>
+<!--================================================================================================
 		ここからgoogle埋め込み行
 -->
 <!--
@@ -489,14 +481,12 @@ Google<br>
 	<iframe src="http://www.google.co.jp/" height="100%" width="100%" frameborder=0></iframe>
 </td></tr>
 -->
-<!-- ===============================================================================================
+<!--================================================================================================
 		TABLE ここまで
 -->
-</table> </center></td></tr></table>
-<!-- ===============================================================================================
+</table> </td></tr></table>
+<!--================================================================================================
 		BODY ここまで
 -->
-</center>
 </body>
-
 </html>

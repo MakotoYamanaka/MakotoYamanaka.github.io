@@ -1,45 +1,33 @@
-<!--<!DOCTYPE html>-->
-<html>
-<!-- ===============================================================================================
+<!DOCTYPE html>
+<html style="height:100%;">
+<!--================================================================================================
 		HEAD
 -->
 <head>
-	<!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
 	<meta charset="UTF-8">
-	<!--<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">-->
 	<meta name="viewport" content="initial-scale=1.0,user-scalable=no">
 	<title>テキスト編集</title>
-	
-	<!--
-	<link rel="shortcut icon" href="https://makotoyamanaka.github.io/texteditor/index.ico" type="image/vnd.microsoft.icon" />
-	<link rel="icon" href="https://makotoyamanaka.github.io/texteditor/index.ico" type="image/vnd.microsoft.icon" />
-	-->
 	<link rel="shortcut icon" href="https://makotoyamanaka.github.io/texteditor/favicon.png" type="image/x-icon">
 	<style type="text/css">
 	._body {
 		font-size: 100%;
 	}
-	._mono {
-		font-family: monospace;
-		font-size: 14px;
-	}
 	</style>
 </head>
 
-<!-- ===============================================================================================
+<!--================================================================================================
 		ここからBODY
 -->
-<body onload='document.textareaForm.editTextarea.focus();' bgcolor='#B8D8C8'>
-<center>
+<body onload='document.textareaForm.editTextarea.focus();' style="height:100%;margin:0;background:#B8D8C8;">
 
-<!-- ===============================================================================================
+<!--================================================================================================
 		NO SCRIPT
 -->
 <noscript>
 <p>JavaScriptがOFFになっています。以下のボタンは使用出来ません。</p>
 </noscript>
 
-<!-- ===============================================================================================
+<!--================================================================================================
 		テキスト処理JavaScript
 -->
 <script type="text/javascript">
@@ -49,8 +37,7 @@
 /*--------------------------------------------------
 	文字数を数える
 */
-function countCharacters()
-{
+function countCharacters(){
 	window.alert( document.textareaForm.editTextarea.value.length.toString() + "文字です" );
 	// フォーカスが外れているので戻しておく
 	document.textareaForm.editTextarea.focus();
@@ -58,8 +45,7 @@ function countCharacters()
 /*--------------------------------------------------
 	JavaScriptとして実行
 */
-function evalAsJavaScript()
-{
+function evalAsJavaScript(){
 	var res = eval( document.textareaForm.editTextarea.value );
 	if( res == null )
 	{
@@ -309,25 +295,24 @@ function sortCharacters()
 }
 </script>
 
-<!-- ===============================================================================================
+<!--================================================================================================
 		ここからTABLE(1x1)
 -->
-<table class="_body" height="100%" width="100%" border="0">
+<table class="_body" style="height:100%;width:100%;text-align:center;">
 <tr>
 <td>
-<center>
-<!-- ===============================================================================================
+<!--================================================================================================
 		テキスト編集FORM
 -->
 <form name="textareaForm" method="" action="" onSubmit="">
-	<textarea class="_mono" name="editTextarea" rows=30 wrap=virtual style="width:98%;"></textarea>
+	<textarea name="editTextarea" rows=30 wrap=virtual style="width:98%;font-family:monospace;font-size:14px;"></textarea>
 </form>
 
-<!-- ===============================================================================================
+<!--================================================================================================
 		ボタンFORM
 -->
 <form name="buttonsForm">
-<!-- ///////////////////////////////////////////////////////////////////////////////////////////////
+<!--////////////////////////////////////////////////////////////////////////////////////////////////
 		解析処理
 -->
 解析<br>
@@ -338,7 +323,7 @@ function sortCharacters()
 	onClick='evalAsJavaScript()'
 	>
 <br>
-<!-- ///////////////////////////////////////////////////////////////////////////////////////////////
+<!--////////////////////////////////////////////////////////////////////////////////////////////////
 		文字変換処理
 -->
 <br>
@@ -370,7 +355,7 @@ function sortCharacters()
 	onClick='changeTo_decodeURIComponent()'
 	>
 <br>
-<!-- ///////////////////////////////////////////////////////////////////////////////////////////////
+<!--////////////////////////////////////////////////////////////////////////////////////////////////
 		行単位編集処理
 -->
 <br>
@@ -395,7 +380,7 @@ function sortCharacters()
 	onClick='trimParagraphs()'
 	>
 <br>
-<!-- ///////////////////////////////////////////////////////////////////////////////////////////////
+<!--////////////////////////////////////////////////////////////////////////////////////////////////
 		その他編集処理
 -->
 <br>
@@ -403,12 +388,12 @@ function sortCharacters()
 <input class="_body" type="button" name="文字ソート" value="文字ソート"
 	onClick='sortCharacters()'
 	>
-<!-- /////////////////////////////////////////////////////////////////////////////////////////// -->
+<!--//////////////////////////////////////////////////////////////////////////////////////////// -->
 </form> <!-- name="buttonsForm" -->
 
 
 <font color="#779988" style="font-size:70%;">
-ver. 4.0b10
+ver. 4.0
 </font>
 <!--
 	4.0		デザイン変更。
@@ -420,11 +405,9 @@ ver. 4.0b10
 	1.2.0	まで変更履歴書かなかった
 -->
 
-</center>
 </td>
 </tr>
 </table>
 
-</center>
 </body>
 </html>

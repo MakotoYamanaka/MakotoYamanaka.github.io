@@ -48,7 +48,7 @@ function getFocus(){
 <!--================================================================================================
 		ここからBODY
 -->
-<body onload="getFocus();" style="height:100%;margin:0;background:#C0D0E0;">
+<body onload="getFocus();" style="height:100%;width:100%;margin:0;background:#C0D0E0;">
 
 <!--================================================================================================
 		NO SCRIPT
@@ -135,17 +135,17 @@ function searchWithDefault(){
 		・ウインドウ全体を占め、内容を中心に配置するtable。
 		・コンテンツ最小高さのtable。
 -->
-<table style="height:100%;width:100%;"><tr><td> <table class="_body" style="width:100%;text-align:center;">
+<table style="height:100%;width:98%;margin:0 auto;"><tr><td> <table class="_body" style="width:100%;text-align:center;">
 <!--================================================================================================
 		キーワード入力FORM
 		※ keywordFormにkeywordText,keywordText2両方入れるとonSubmitが動作しない
 -->
 <tr><td>
 <form name="keywordForm" method="" action="" onSubmit='searchWithDefault(); return false;'>
-	<input class="_body" type="text" value="" name="keywordText" style="width:98%;text-align:center;">
+	<input class="_body" type="text" value="" name="keywordText" style="width:100%;text-align:center;">
 </form>
 <form name="keywordForm2" method="" action="" onSubmit='searchWithDefault(); return false;'>
-	<input class="_body" type="text" value="" name="keywordText2" style="width:98%;text-align:center;">
+	<input class="_body" type="text" value="" name="keywordText2" style="width:100%;text-align:center;">
 </form>
 <!--================================================================================================
 		新規タブで開くチェックボックス
@@ -434,11 +434,12 @@ Google<br>
 -->
 <tr><td>
 <font color="#778899" style="font-size:70%;">
-	<p>ver. 8.4</p>
+	<p>ver. 8.6</p>
 	<p>クエリの仕様: keyword=入力フィールド1 keyword2=入力フィールド2</p>
 </font>
 <!--
-	8.5		入力フィールドを中心揃えに。
+	8.6		スタイル若干調整。
+	8.4		入力フィールドを中心揃えに。
 	8.3		スタイルの書き方変更。
 	8.1		デザイン変更。
 	7.2		Yahoo!路線情報-乗換案内を更新。

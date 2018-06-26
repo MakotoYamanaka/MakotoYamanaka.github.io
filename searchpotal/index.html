@@ -304,17 +304,17 @@ Google<br>
 -->
 <tr bgcolor='#B8C8D8'><td>
 技術情報<br>
-<input class="_body" type="button" name="appleDevDoc" value=" Developer Documentation" 
+<input class="_body" type="button" name="appleDev" value=" Developer Documentation" 
+	onClick='searchWithKeyword( 
+	"https://developer.apple.com/documentation/",
+	"https://developer.apple.com/search/?q=",
+	"", false )'
+	>
+<input class="_body" type="button" name="appleIosRef" value=" iOS Reference" 
 	onClick='searchWithKeyword( 
 	"https://developer.apple.com/documentation/",
 	"https://developer.apple.com/search/?q=",
 	"&type=Reference&platform=iOS", false )'
-	>
-<input class="_body" type="button" name="appleDeveloper" value=" Developer" 
-	onClick='searchWithKeyword( 
-	"https://developer.apple.com/jp/",
-	"https://developer.apple.com/search/?q=",
-	"", false )'
 	>
 <input class="_body" type="button" name="freeBSDjpman" value="FreeBSD 日本語マニュアル" 
 	onClick='searchWithKeyword( 
@@ -437,10 +437,11 @@ Google<br>
 -->
 <tr><td>
 <font color="#778899" style="font-size:70%;">
-	<p>ver. 8.9</p>
+	<p>ver. 9.0</p>
 	<p>クエリの仕様: keyword=入力フィールド1 keyword2=入力フィールド2</p>
 </font>
-<!--
+<!--		searchpotal
+	9.0		developer.apple.comを整理。
 	8.9		スタイル若干調整。
 	8.4		入力フィールドを中心揃えに。
 	8.3		スタイルの書き方変更。

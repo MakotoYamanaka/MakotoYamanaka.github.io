@@ -88,6 +88,10 @@ function searchWithKeyword( topURL, prefixURL, suffixURL, is_escape ){
 	}else{
 		window.open( prefixURL + keyword + suffixURL, win_name );
 	}
+	// 新規タブで開く場合は入力フィールドをクリア
+	if( document.optionForm.newTabCheckbox.checked ){
+		clearKeywords();
+	}
 }
 /*--------------------------------------------------
 	keywordText2 も使う場合
@@ -130,6 +134,14 @@ function searchWithDefault(){
 		document.buttonsForm.google.click();
 		return;
 //	}
+}
+/*--------------------------------------------------
+	入力エリアを空に
+*/
+function clearKeywords(){
+	document.keywordForm.keywordText.value="";
+	document.keywordForm2.keywordText2.value="";
+	document.keywordForm.keywordText.focus();
 }
 </script>
 
@@ -431,7 +443,7 @@ Google<br>
 -->
 <tr bgcolor='#B8C8D8'><td>
 <input class="_body" type="reset" name="clear" value="クリア"
-	onClick='document.keywordForm.keywordText.value="";document.keywordForm2.keywordText2.value="";document.keywordForm.keywordText.focus();'
+	onClick='clearKeywords();'
 	>
 </td></tr>
 <!--================================================================================================
@@ -443,10 +455,11 @@ Google<br>
 -->
 <tr><td>
 <font color="#778899" style="font-size:70%;">
-	<p>ver. 10.1</p>
+	<p>ver. 11.0</p>
 	<p>クエリの仕様: keyword=入力フィールド1 keyword2=入力フィールド2</p>
 </font>
 <!-- searchpotal
+	11.0	新規タブで開く場合は入力フィールドをクリアする。
 	10.1	TSUTAYAを修正。
 	10.0	Wikipedia(en)追加。
 	 9.0	developer.apple.comを整理。

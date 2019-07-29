@@ -10,13 +10,13 @@
 	<link rel="shortcut icon" href="https://makotoyamanaka.github.io/searchpotal/favicon.png" type="image/x-icon">
 	<style type="text/css">
 	td {
-		padding-top: 12px;
-		padding-bottom: 4px;
+		padding-top: 10px;
+		padding-bottom: 10px;
 		padding-left: 0px;
 		padding-right: 0px;
 	}
 	._body {
-		font-size: 100%;
+		font-size: 99%;/*100%にすると、Firefoxで一部のボタンだけデザインが変わってしまうため*/
 	}
 	</style>
 </head>
@@ -176,7 +176,7 @@ function clearKeywords(){
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		Google検索
 -->
-<tr bgcolor='#B8C8D8'><td>
+<tr bgcolor='#B0C0D0'><td>
 Google<br>
 <input class="_body" type="button" name="google" value="Google"
 	onClick='searchWithKeyword(
@@ -248,7 +248,7 @@ Google<br>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		価格検索
 -->
-<tr bgcolor='#B8C8D8'><td>
+<tr bgcolor='#B0C0D0'><td>
 価格<br>
 <input class="_body" type="button" name="kakakucom" value="価格.com"
 	onClick='searchWithKeyword(
@@ -314,7 +314,7 @@ Google<br>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		技術情報検索
 -->
-<tr bgcolor='#B8C8D8'><td>
+<tr bgcolor='#B0C0D0'><td>
 技術情報<br>
 <input class="_body" type="button" name="appleDev" value=" Developer Documentation"
 	onClick='searchWithKeyword(
@@ -386,7 +386,7 @@ Google<br>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		百科事典
 -->
-<tr bgcolor='#B8C8D8'><td>
+<tr bgcolor='#B0C0D0'><td>
 百科事典<br>
 <input class="_body" type="button" name="wikipedia" value="Wikipedia"
 	onClick='searchWithKeyword(
@@ -414,9 +414,33 @@ Google<br>
 	>
 </td></tr>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		その他サイト
+		配達状況
 -->
 <tr><td>
+配達状況<br>
+<input class="_body" type="button" name="kuronekoyamato" value="ヤマト運輸"
+	onClick='searchWithKeyword(
+	"https://cmypage.kuronekoyamato.co.jp/portal/entrance?id=kojintop",
+	"http://toidirect.kuronekoyamato.co.jp/tracking/Search?ctn=",
+	"", false )'
+	>
+<input class="_body" type="button" name="japanpost" value="日本郵便"
+	onClick='searchWithKeyword(
+	"https://www.post.japanpost.jp/index.html",
+	"https://trackings.post.japanpost.jp/services/srv/search/direct?reqCodeNo1=",
+	"", false )'
+	>
+<input class="_body" type="button" name="sagawa" value="佐川急便"
+	onClick='searchWithKeyword(
+	"https://www.e-service.sagawa-exp.co.jp/portal/do/login/login",
+	"https://k2k.sagawa-exp.co.jp/p/web/okurijosearch.do?okurijoNo=",
+	"/", false )'
+	>
+</td></tr>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		その他サイト
+-->
+<tr bgcolor='#B0C0D0'><td>
 その他サイト<br>
 <input class="_body" type="button" name="yahooTransit" value="Yahoo!路線情報-乗換案内"
 	onClick='searchWithKeyword2(
@@ -441,7 +465,7 @@ Google<br>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		クリア
 -->
-<tr bgcolor='#B8C8D8'><td>
+<tr><td>
 <input class="_body" type="reset" name="clear" value="クリア"
 	onClick='clearKeywords();'
 	>
@@ -455,10 +479,11 @@ Google<br>
 -->
 <tr><td>
 <font color="#778899" style="font-size:70%;">
-	<p>ver. 11.0</p>
+	<p>ver. 12.0</p>
 	<p>クエリの仕様: keyword=入力フィールド1 keyword2=入力フィールド2</p>
 </font>
 <!-- searchpotal
+	12.0	配達状況（ヤマト運輸、日本郵便、佐川急便）追加。
 	11.0	新規タブで開く場合は入力フィールドをクリアする。
 	10.1	TSUTAYAを修正。
 	10.0	Wikipedia(en)追加。

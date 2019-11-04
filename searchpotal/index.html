@@ -280,17 +280,17 @@ Google<br>
 	"http://www.amazon.co.jp/s/ref=nb_ss?url=search-alias%3Daps&ie=UTF8&field-keywords=",
 	"", false )'
 	>
-<input class="_body" type="button" name="yahooShopping" value="Yahoo!ショッピング"
-	onClick='searchWithKeyword(
-	"http://shopping.yahoo.co.jp/",
-	"http://search.shopping.yahoo.co.jp/search?p=",
-	"", false )'
-	>
 <input class="_body" type="button" name="rakuten" value="楽天"
 	onClick='searchWithKeyword(
 	"https://www.rakuten.co.jp/",
 	"https://search.rakuten.co.jp/search/mall/",
 	"/", false )'
+	>
+<input class="_body" type="button" name="yahooShopping" value="Yahoo!ショッピング"
+	onClick='searchWithKeyword(
+	"http://shopping.yahoo.co.jp/",
+	"http://search.shopping.yahoo.co.jp/search?p=",
+	"", false )'
 	>
 <input class="_body" type="button" name="yodobashicom" value="ヨドバシ.com"
 	onClick='searchWithKeyword(
@@ -434,7 +434,7 @@ Google<br>
 	onClick='searchWithKeyword(
 	"https://www.e-service.sagawa-exp.co.jp/portal/do/login/login",
 	"https://k2k.sagawa-exp.co.jp/p/web/okurijosearch.do?okurijoNo=",
-	"/", false )'
+	"", false )'
 	>
 </td></tr>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -479,10 +479,11 @@ Google<br>
 -->
 <tr><td>
 <font color="#778899" style="font-size:70%;">
-	<p>ver. 15.1</p>
+	<p>ver. 15.2</p>
 	<p>クエリの仕様: keyword=入力フィールド</p>
 </font>
 <!-- searchpotal
+	15.2	佐川急便を修正。買い物の順番入れ替え。
 	15.1	価格.com、ベストゲート、Yahoo!オークションを更新。
 	15.0	Yahoo!路線情報-乗換案内を廃止。
 	14.0	iOS Referenceを廃止。developer.apple.comをGoogle検索を追加。

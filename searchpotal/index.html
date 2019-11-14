@@ -196,29 +196,35 @@ Google<br>
 	"https://www.google.com/search?q=",
 	"&lr=-lang_ja", false )'
 	>
-<input class="_body" type="button" name="googleNews" value="Google ニュース"
+<input class="_body" type="button" name="googleNews" value="Googleニュース"
 	onClick='searchWithKeyword(
 	"https://news.google.com/",
 	"https://www.google.com/search?tbm=nws&q=",
 	"", false )'
 	>
-<input class="_body" type="button" name="googleMap" value="Google マップ"
+<input class="_body" type="button" name="googleMap" value="Googleマップ"
 	onClick='searchWithKeyword(
 	"https://maps.google.com/",
 	"https://www.google.com/maps?q=",
 	"", false )'
 	>
-<input class="_body" type="button" name="googleImage" value="Google 画像"
+<input class="_body" type="button" name="googleImage" value="Google画像"
 	onClick='searchWithKeyword(
-	"https://images.google.com/",
-	"https://www.google.com/images?q=",
-	"", false )'
+	"https://www.google.com/imghp",
+	"https://www.google.com/search?q=",
+	"&tbm=isch", false )'
 	>
-<input class="_body" type="button" name="googleImageURL" value="Google 画像URL"
+<input class="_body" type="button" name="googleImageURL" value="Google画像URL"
 	onClick='searchWithKeyword(
 	"https://images.google.com/",
 	"https://images.google.com/searchbyimage?image_url=",
 	"", false )'
+	>
+<input class="_body" type="button" name="googleVideo" value="Google動画"
+	onClick='searchWithKeyword(
+	"https://www.google.com/",
+	"https://www.google.com/search?q=",
+	"&tbm=vid", false )'
 	>
 </td></tr>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -226,13 +232,31 @@ Google<br>
 -->
 <tr><td>
 その他検索<br>
+<input class="_body" type="button" name="duckduckgo" value="DuckDuckGo"
+	onClick='searchWithKeyword(
+	"https://duckduckgo.com/",
+	"https://duckduckgo.com/?q=",
+	"", false )'
+	>
+<input class="_body" type="button" name="duckduckgoImage" value="DuckDuckGo画像"
+	onClick='searchWithKeyword(
+	"https://duckduckgo.com/",
+	"https://duckduckgo.com/?q=",
+	"&iax=images&ia=images", false )'
+	>
+<input class="_body" type="button" name="duckduckgoVideo" value="DuckDuckGo動画"
+	onClick='searchWithKeyword(
+	"https://duckduckgo.com/",
+	"https://duckduckgo.com/?q=",
+	"&iax=videos&ia=videos", false )'
+	>
 <input class="_body" type="button" name="yahoo" value="Yahoo!"
 	onClick='searchWithKeyword(
 	"http://www.yahoo.co.jp/",
 	"http://search.yahoo.co.jp/search?p=",
 	"&ei=UTF-8", false )'
 	>
-<input class="_body" type="button" name="yahooMap" value="Yahoo! 地図"
+<input class="_body" type="button" name="yahooMap" value="Yahoo!地図"
 	onClick='searchWithKeyword(
 	"http://map.yahoo.co.jp/",
 	"http://map.yahoo.co.jp/search?p=",
@@ -244,7 +268,7 @@ Google<br>
 	"http://www.bing.com/search?q=",
 	"", false )'
 	>
-<input class="_body" type="button" name="bingImages" value="bing 画像"
+<input class="_body" type="button" name="bingImages" value="bing画像"
 	onClick='searchWithKeyword(
 	"http://www.bing.com/",
 	"http://www.bing.com/images/search?q=",
@@ -491,10 +515,11 @@ Google<br>
 -->
 <tr><td>
 <font color="#778899" style="font-size:70%;">
-	<p>ver. 17.0</p>
+	<p>ver. 18.0</p>
 	<p>クエリの仕様: keyword=入力フィールド</p>
 </font>
 <!-- searchpotal
+	18.0	Google画像を更新。Google動画を追加。DuckDuckGo、DuckDuckGo画像、DuckDuckGo動画を追加。
 	17.0	Google日本語以外を追加。
 	16.0	OSStatus.comを追加。
 	15.2	佐川急便を修正。買い物の順番入れ替え。

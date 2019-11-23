@@ -32,6 +32,42 @@
 -->
 <script type="text/javascript">
 /*==================================================================================================
+		編集
+*/
+/*--------------------------------------------------
+	選択範囲をコピー
+*/
+function copySelection(){
+	document.textareaForm.editTextarea.focus();
+	document.execCommand('copy');
+}
+/*--------------------------------------------------
+	すべてコピー
+	【JavaScript】クリップボードに文字列をコピーする - B-Teck! https://blog.beatdjam.com/entry/2018/06/22/190000
+*/
+function copyAll(){
+	// copy用の一時要素を作成し、文字を入れる
+	const preElem = document.createElement('pre');
+	preElem.textContent = document.textareaForm.editTextarea.value;
+	// 表示されていないとコピー出来ないのでbodyに追加する
+	document.body.appendChild(preElem);
+	// 追加した要素を選択しコピーする
+	// コピー後に追加した要素を消すので画面上はほぼ影響がない
+	document.getSelection().selectAllChildren(preElem);
+	document.execCommand('copy');
+	document.body.removeChild(preElem);
+	// フォーカスが外れているので戻しておく
+	document.textareaForm.editTextarea.focus();
+}
+/*--------------------------------------------------
+	クリア
+*/
+function clearAll(){
+	document.textareaForm.editTextarea.value = "";
+	// フォーカスが外れているので戻しておく
+	document.textareaForm.editTextarea.focus();
+}
+/*==================================================================================================
 		解析処理
 */
 /*--------------------------------------------------
@@ -115,7 +151,7 @@ function sortParagraphs(){
 	行頭と行末に追加
 */
 function addToParagraphs(){
-	// 行単位で分割・ソート
+	// 行単位で分割
 	var lineArray = document.textareaForm.editTextarea.value.split("\n");
 	// 追加文字を設定
 	var prefixString = prompt( "行頭に追加する文字を指定して下さい", "" );
@@ -182,7 +218,7 @@ function openAsURL(){
 	行の前の空白を削除
 */
 function trimParagraphsLeft(){
-	// 行単位で分割・ソート
+	// 行単位で分割
 	var lineArray = document.textareaForm.editTextarea.value.split("\n");
 	// trimしつつstringに戻す
 	var setString = "";
@@ -198,7 +234,7 @@ function trimParagraphsLeft(){
 	行の後ろの空白を削除
 */
 function trimParagraphsRight(){
-	// 行単位で分割・ソート
+	// 行単位で分割
 	var lineArray = document.textareaForm.editTextarea.value.split("\n");
 	// trimしつつstringに戻す
 	var setString = "";
@@ -214,7 +250,7 @@ function trimParagraphsRight(){
 	行の前後の空白を削除
 */
 function trimParagraphs(){
-	// 行単位で分割・ソート
+	// 行単位で分割
 	var lineArray = document.textareaForm.editTextarea.value.split("\n");
 	// trimしつつstringに戻す
 	var setString = "";
@@ -272,8 +308,23 @@ function sortCharacters(){
 -->
 <form name="buttonsForm">
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		編集
+-->
+<input class="_body" type="button" name="コピー" value="コピー"
+	onClick='copySelection()'
+	>
+<input class="_body" type="button" name="すべてコピー" value="すべてコピー"
+	onClick='copyAll()'
+	>
+　
+<input class="_body" type="button" name="クリア" value="クリア"
+	onClick='clearAll()'
+	>
+<br>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		解析処理
 -->
+<br>
 解析<br>
 <input class="_body" type="button" name="文字数を数える" value="文字数を数える"
 	onClick='countCharacters()'
@@ -352,9 +403,10 @@ function sortCharacters(){
 
 
 <font color="#779988" style="font-size:70%;">
-ver. 4.1
+ver. 5.0
 </font>
 <!--
+	5.0		コピー、すべてコピー、クリアを追加。
 	4.1		デザイン変更。
 	3.0		行ソートを数字考慮など改善。
 	2.1		dropboxからbitbucketに移行。

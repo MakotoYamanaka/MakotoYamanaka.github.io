@@ -42,22 +42,17 @@ function copySelection(){
 	document.execCommand('copy');
 }
 /*--------------------------------------------------
-	すべてコピー
-	【JavaScript】クリップボードに文字列をコピーする - B-Teck! https://blog.beatdjam.com/entry/2018/06/22/190000
+	全てを選択
+*/
+function selectAll(){
+	document.textareaForm.editTextarea.select();
+}
+/*--------------------------------------------------
+	全てを選択しコピー
 */
 function copyAll(){
-	// copy用の一時要素を作成し、文字を入れる
-	const preElem = document.createElement('pre');
-	preElem.textContent = document.textareaForm.editTextarea.value;
-	// 表示されていないとコピー出来ないのでbodyに追加する
-	document.body.appendChild(preElem);
-	// 追加した要素を選択しコピーする
-	// コピー後に追加した要素を消すので画面上はほぼ影響がない
-	document.getSelection().selectAllChildren(preElem);
-	document.execCommand('copy');
-	document.body.removeChild(preElem);
-	// フォーカスが外れているので戻しておく
-	document.textareaForm.editTextarea.focus();
+	selectAll();
+	copySelection();
 }
 /*--------------------------------------------------
 	クリア
@@ -313,7 +308,10 @@ function sortCharacters(){
 <input class="_body" type="button" name="コピー" value="コピー"
 	onClick='copySelection()'
 	>
-<input class="_body" type="button" name="すべてコピー" value="すべてコピー"
+<input class="_body" type="button" name="すべてを選択" value="すべてを選択"
+	onClick='selectAll()'
+	>
+<input class="_body" type="button" name="すべてをコピー" value="すべてをコピー"
 	onClick='copyAll()'
 	>
 　
@@ -403,9 +401,10 @@ function sortCharacters(){
 
 
 <font color="#779988" style="font-size:70%;">
-ver. 5.0
+ver. 6.0
 </font>
 <!--
+	6.0		すべてを選択を追加。すべてをコピーがiOSでスタイルが付くのを修正。
 	5.0		コピー、すべてコピー、クリアを追加。
 	4.1		デザイン変更。
 	3.0		行ソートを数字考慮など改善。

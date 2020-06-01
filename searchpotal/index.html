@@ -16,7 +16,7 @@
 		padding-right: 0px;
 	}
 	._body {
-		font-size: 99%;/*100%にすると、Firefoxで一部のボタンだけデザインが変わってしまうため*/
+		font-size: 100%;
 	}
 	</style>
 </head>
@@ -89,9 +89,9 @@ function searchWithKeyword( topURL, prefixURL, suffixURL, is_escape ){
 		window.open( prefixURL + keyword + suffixURL, win_name );
 	}
 	// 新規タブで開く場合は入力フィールドをクリア
-	if( document.optionForm.newTabCheckbox.checked ){
-		clearKeywords();
-	}
+	//if( document.optionForm.newTabCheckbox.checked ){
+	//	clearKeywords();
+	//}
 }
 /*--------------------------------------------------
 	keywordText2 も使う場合
@@ -515,10 +515,11 @@ Google<br>
 -->
 <tr><td>
 <font color="#778899" style="font-size:70%;">
-	<p>ver. 18.0</p>
+	<p>ver. 19</p>
 	<p>クエリの仕様: keyword=入力フィールド</p>
 </font>
 <!-- searchpotal
+	19.0	新規タブで開く場合は入力フィールドをクリアするのを廃止。
 	18.0	Google画像を更新。Google動画を追加。DuckDuckGo、DuckDuckGo画像、DuckDuckGo動画を追加。
 	17.0	Google日本語以外を追加。
 	16.0	OSStatus.comを追加。

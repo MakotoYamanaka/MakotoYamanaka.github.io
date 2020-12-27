@@ -22,36 +22,43 @@
 </head>
 
 <script type="text/javascript">
-function getFocus(){
+function getFocus(retry){
+//	console.log("did call getFocus(). retry=", retry);
 	window.focus();
 	document.keywordForm.keywordText.focus();
 	// keywordクエリ指定があれば入れる。
 	var queryFullStr = document.URL.split('?').pop();
-	if( queryFullStr.length <= 0 ){
+	if(queryFullStr.length <= 0){
 		return;
 	}
 	var queryArr = queryFullStr.split('&');
-	for( i=0; i < queryArr.length; i++ ){
+	for(i=0; i < queryArr.length; i++){
 		var queryStr = queryArr[i];
 		var kvArr = queryStr.split('=');
 		
 		var keyStr = kvArr[0];
 		var valueStr = decodeURIComponent(kvArr[1]);
 		
-		if( keyStr == "keyword" ){
+		if(keyStr == "keyword"){
 			document.title = document.title + "　" + valueStr;
 			document.keywordForm.keywordText.value = valueStr;
 		//}else if( keyStr == "keyword2" ){
 		//	document.keywordForm2.keywordText2.value = valueStr;
 		}
 	}
+	// 最初（retry==0）は必ず呼ぶ。その時点でフォーカスを得ていてもその後外される場合があるため。
+//	if(retry < 3){
+//	if(retry <= 0 || (retry < 3 && document.activeElement !== document.keywordForm.keywordText)){
+//		console.log("will call getFocus(). retry=", retry);
+//		window.setTimeout(function(){getFocus(retry+1)}, 500);
+//	}
 }
 </script>
 
 <!--================================================================================================
 		ここからBODY
 -->
-<body onload="getFocus();" style="height:100%;width:100%;margin:0 auto;background:#C0D0E0;">
+<body onload="getFocus(0);" style="height:100%;width:100%;margin:0 auto;background:#C0D0E0;">
 
 <!--================================================================================================
 		NO SCRIPT

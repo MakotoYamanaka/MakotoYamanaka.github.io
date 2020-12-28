@@ -118,8 +118,7 @@ function searchWithDefault(){
 	keyword = document.keywordForm.keywordText.value;
 	// 入力が空の場合、
 	if( keyword.length <= 0 ){
-		// 本当はロケーションバーにフォーカスさせたいが、方法がないので、もう一度タブを押せばいいようにしておく
-		document.buttonsForm.clear.focus();
+		//document.clearForm.clear.focus();
 		return;
 	}
 	// "ttp:" "ttps:" のいずれかで始まる場合は補完
@@ -169,6 +168,12 @@ function clearKeywords(){
 <!--<form name="keywordForm2" method="" action="" onSubmit='searchWithDefault(); return false;'>
 	<input class="_body" type="text" value="" name="keywordText2" style="width:96%;text-align:center;">
 </form>-->
+<!--================================================================================================
+		クリア
+-->
+<form name="clearForm" method="" action="">
+	<input class="_body" type="reset" name="clear" value="クリア" onClick='clearKeywords();'>
+</form>
 <!--================================================================================================
 		新規タブで開くチェックボックス
 -->
@@ -505,14 +510,6 @@ Google<br>
 	"", false )'
 	>
 </td></tr>
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		クリア
--->
-<tr><td>
-<input class="_body" type="reset" name="clear" value="クリア"
-	onClick='clearKeywords();'
-	>
-</td></tr>
 <!--================================================================================================
 		サイト別ボタンFORM ここまで
 -->
@@ -522,10 +519,11 @@ Google<br>
 -->
 <tr><td>
 <font color="#778899" style="font-size:70%;">
-	<p>ver. 19</p>
+	<p>ver. 20</p>
 	<p>クエリの仕様: keyword=入力フィールド</p>
 </font>
 <!-- searchpotal
+	20.0	クリアボタンの位置変更。
 	19.0	新規タブで開く場合は入力フィールドをクリアするのを廃止。
 	18.0	Google画像を更新。Google動画を追加。DuckDuckGo、DuckDuckGo画像、DuckDuckGo動画を追加。
 	17.0	Google日本語以外を追加。

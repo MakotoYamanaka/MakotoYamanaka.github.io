@@ -169,16 +169,16 @@ function clearKeywords(){
 	<input class="_body" type="text" value="" name="keywordText2" style="width:96%;text-align:center;">
 </form>-->
 <!--================================================================================================
-		クリア
--->
-<form name="clearForm" method="" action="">
-	<input class="_body" type="reset" name="clear" value="クリア" onClick='clearKeywords();'>
-</form>
-<!--================================================================================================
 		新規タブで開くチェックボックス
 -->
 <form name="optionForm" method="" action="">
 	<label><input type="checkbox" name="newTabCheckbox">新しいタブ／ウインドウで開く</label>
+</form>
+<!--================================================================================================
+		クリア
+-->
+<form name="clearForm" method="" action="">
+	<input class="_body" type="reset" name="clear" value="クリア" onClick='clearKeywords();'>
 </form>
 </td></tr>
 <!--================================================================================================
@@ -519,10 +519,11 @@ Google<br>
 -->
 <tr><td>
 <font color="#778899" style="font-size:70%;">
-	<p>ver. 21</p>
+	<p>ver. 22</p>
 	<p>クエリの仕様: keyword=入力フィールド</p>
 </font>
 <!-- searchpotal
+	22.0	クリアボタンの位置変更。
 	21.0	デフォルト検索をDuckDuckGoに。
 	20.0	クリアボタンの位置変更。
 	19.0	新規タブで開く場合は入力フィールドをクリアするのを廃止。

@@ -279,7 +279,11 @@ function sortCharacters(){
 		for( var ci=0; ci < charArray.length; ci++ ){
 			lineString = lineString + charArray[ci];
 		}
-		setString = setString + lineString + "\n";
+		if( li + 1 < lineArray.length ){
+			setString = setString + lineString + "\n";
+		}else{
+			setString = setString + lineString;
+		}
 	}
 	document.textareaForm.editTextarea.value = setString;
 }
@@ -404,6 +408,7 @@ function sortCharacters(){
 ver. 6.0
 </font>
 <!--
+	7.0		文字ソートで最後に改行が追加されるのを修正。
 	6.0		すべてを選択を追加。すべてをコピーがiOSでスタイルが付くのを修正。
 	5.0		コピー、すべてコピー、クリアを追加。
 	4.1		デザイン変更。

@@ -261,6 +261,32 @@ function trimParagraphs(){
 		編集処理
 */
 /*--------------------------------------------------
+	文字間に挿入
+*/
+function insertToCharacters(){
+	var insertString = prompt("追加する文字を指定して下さい", "　");
+	if( insertString == null ){
+		document.textareaForm.editTextarea.focus();
+		return;
+	}
+	var lineArray = document.textareaForm.editTextarea.value.split("\n");
+	var setString = "";
+	for(var li=0; li < lineArray.length; li++){
+		var lineString = lineArray[li];
+		var newLineStr = "";
+		for(var ci=0; ci < lineString.length; ci++){
+			newLineStr = newLineStr + (ci<=0 ? "" : insertString) + lineString.charAt(ci);
+		}
+		
+		if(li + 1 < lineArray.length){
+			setString = setString + newLineStr + "\n";
+		}else{
+			setString = setString + newLineStr;
+		}
+	}
+	document.textareaForm.editTextarea.value = setString;
+}
+/*--------------------------------------------------
 	文字ソート
 */
 function sortCharacters(){
@@ -275,7 +301,7 @@ function sortCharacters(){
 		}
 		charArray.sort();
 		
-		var lineString = "";
+		lineString = "";
 		for( var ci=0; ci < charArray.length; ci++ ){
 			lineString = lineString + charArray[ci];
 		}
@@ -397,6 +423,9 @@ function sortCharacters(){
 -->
 <br>
 その他編集<br>
+<input class="_body" type="button" name="文字間に挿入" value="文字間に挿入"
+	onClick='insertToCharacters()'
+	>
 <input class="_body" type="button" name="文字ソート" value="文字ソート"
 	onClick='sortCharacters()'
 	>
@@ -405,10 +434,10 @@ function sortCharacters(){
 
 
 <font color="#779988" style="font-size:70%;">
-ver. 6.0
+ver. 7.0
 </font>
 <!--
-	7.0		文字ソートで最後に改行が追加されるのを修正。
+	7.0		文字ソートで最後に改行が追加されるのを修正。文字間に挿入を追加。
 	6.0		すべてを選択を追加。すべてをコピーがiOSでスタイルが付くのを修正。
 	5.0		コピー、すべてコピー、クリアを追加。
 	4.1		デザイン変更。

@@ -466,12 +466,11 @@ Google<br>
 -->
 <tr><td>
 配達状況<br>
-<!-- https://toi.kuronekoyamato.co.jp/cgi-bin/tneko?type=1&no01=444487957476&id=46FCAB6 -->
-<input class="_body" type="button" name="kuronekoyamato" value="ヤマト運輸"
+<input class="_body" type="button" name="kuronekoyamato" value="クロネコヤマト"
 	onClick='searchWithKeyword(
-	"https://cmypage.kuronekoyamato.co.jp/portal/entrance?id=kojintop",
-	"https://toi.kuronekoyamato.co.jp/cgi-bin/tneko?type=1&no01=",
-	"&id=46FCAB6", false )'
+	"https://cmypage.kuronekoyamato.co.jp/",
+	"http://jizen.kuronekoyamato.co.jp/jizen/servlet/crjz.b.NQ0010?id=",
+	"", false )'
 	>
 <input class="_body" type="button" name="japanpost" value="日本郵便"
 	onClick='searchWithKeyword(
@@ -481,7 +480,7 @@ Google<br>
 	>
 <input class="_body" type="button" name="sagawa" value="佐川急便"
 	onClick='searchWithKeyword(
-	"https://www.e-service.sagawa-exp.co.jp/portal/do/login/login",
+	"https://www.e-service.sagawa-exp.co.jp/",
 	"https://k2k.sagawa-exp.co.jp/p/web/okurijosearch.do?okurijoNo=",
 	"", false )'
 	>
@@ -520,10 +519,11 @@ Google<br>
 -->
 <tr><td>
 <font color="#778899" style="font-size:70%;">
-	<p>ver. 24.0</p>
+	<p>ver. 25.0</p>
 	<p>クエリの仕様: keyword=入力フィールド</p>
 </font>
 <!-- searchpotal
+	25.0	佐川急便を更新。ヤマト運輸をクロネコヤマトに＆更新。
 	24.0	FreeBSD 日本語マニュアルを廃止。ヤマト運輸を更新。
 	23.0	デフォルト検索をGoogleに。
 	22.0	クリアボタンの位置変更。

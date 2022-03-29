@@ -77,11 +77,14 @@ function countCharacters(){
 	JavaScriptとして実行
 */
 function evalAsJavaScript(){
-	var res = eval( document.textareaForm.editTextarea.value );
-	if( res == null ){
+	eval(document.textareaForm.editTextarea.value);
+	/*実行結果を表示する場合
+	var res = eval(document.textareaForm.editTextarea.value);
+	if(res == null){
 		res = "null";
 	}
-	window.alert( "実行結果:\n" + res.toString() );
+	window.alert("実行結果:\n" + res.toString());
+	*/
 	// フォーカスが外れているので戻しておく
 	document.textareaForm.editTextarea.focus();
 }
@@ -449,9 +452,10 @@ function sortCharacters(){
 
 
 <font color="#779988" style="font-size:70%;">
-ver. 8.0
+ver. 9.0
 </font>
 <!--
+	9.0		JavaScript実行結果を表示しないように変更。
 	8.0		検索ポータル追加。
 	7.0		文字ソートで最後に改行が追加されるのを修正。文字間に挿入を追加。
 	6.0		すべてを選択を追加。すべてをコピーがiOSでスタイルが付くのを修正。

@@ -125,6 +125,18 @@ function changeTo_decodeURIComponent(){
 		行単位編集処理
 */
 /*--------------------------------------------------
+	検索ポータル
+*/
+function searchpotal(){
+	var lineArray = document.textareaForm.editTextarea.value.split("\n");
+	for(var i=0; i<lineArray.length; i++){
+		if(lineArray[i].length > 0){
+			var urlStr = "https://makotoyamanaka.github.io/searchpotal/?keyword=" + encodeURIComponent(lineArray[i]);
+			window.open(urlStr,'_blank');
+		}
+	}
+}
+/*--------------------------------------------------
 	行ソート
 */
 function sortParagraphs(){
@@ -394,10 +406,13 @@ function sortCharacters(){
 	>
 <br>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		行単位編集処理
+		行単位処理
 -->
 <br>
-行単位編集<br>
+行単位<br>
+<input class="_body" type="button" name="検索ポータル" value="検索ポータル"
+	onClick='searchpotal()'
+	>
 <input class="_body" type="button" name="行ソート" value="行ソート"
 	onClick='sortParagraphs()'
 	>
@@ -419,10 +434,10 @@ function sortCharacters(){
 	>
 <br>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		その他編集処理
+		その他処理
 -->
 <br>
-その他編集<br>
+その他<br>
 <input class="_body" type="button" name="文字間に挿入" value="文字間に挿入"
 	onClick='insertToCharacters()'
 	>
@@ -434,9 +449,10 @@ function sortCharacters(){
 
 
 <font color="#779988" style="font-size:70%;">
-ver. 7.0
+ver. 8.0
 </font>
 <!--
+	8.0		検索ポータル追加。
 	7.0		文字ソートで最後に改行が追加されるのを修正。文字間に挿入を追加。
 	6.0		すべてを選択を追加。すべてをコピーがiOSでスタイルが付くのを修正。
 	5.0		コピー、すべてコピー、クリアを追加。

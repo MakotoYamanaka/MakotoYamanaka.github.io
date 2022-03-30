@@ -59,6 +59,7 @@ function copyAll(){
 */
 function clearAll(){
 	document.textareaForm.editTextarea.value = "";
+	document.getElementById('outputLabel').innerHTML = "";
 	// フォーカスが外れているので戻しておく
 	document.textareaForm.editTextarea.focus();
 }
@@ -132,12 +133,15 @@ function changeTo_decodeURIComponent(){
 */
 function searchpotal(){
 	var lineArray = document.textareaForm.editTextarea.value.split("\n");
+	var html = "";
 	for(var i=0; i<lineArray.length; i++){
 		if(lineArray[i].length > 0){
 			var urlStr = "https://makotoyamanaka.github.io/searchpotal/?keyword=" + encodeURIComponent(lineArray[i]);
 			window.open(urlStr,'_blank');
+			html = html + '<br><a href="' + urlStr + '" target="_blank">' + lineArray[i] + '</a>';
 		}
 	}
+	document.getElementById('outputLabel').innerHTML = html;
 }
 /*--------------------------------------------------
 	行ソート
@@ -340,7 +344,7 @@ function sortCharacters(){
 		テキスト編集FORM
 -->
 <form name="textareaForm" method="" action="" onSubmit="">
-	<textarea name="editTextarea" rows=30 wrap=virtual style="width:99%;font-family:monospace;font-size:14px;"></textarea>
+	<textarea name="editTextarea" rows=30 wrap=virtual style="width:98%;font-family:monospace;font-size:14px;"></textarea>
 </form>
 
 <!--================================================================================================
@@ -450,12 +454,12 @@ function sortCharacters(){
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 </form> <!-- name="buttonsForm" -->
 
-
 <font color="#779988" style="font-size:70%;">
-ver. 9.0
+<br>ver. 10.0
 </font>
 <!--
-	9.0		JavaScript実行結果を表示しないように変更。
+	10.0	検索ポータル：リンクのHTML表示を追加。
+	9.0		JavaScriptとして実行：実行結果をアラート表示しないように変更。
 	8.0		検索ポータル追加。
 	7.0		文字ソートで最後に改行が追加されるのを修正。文字間に挿入を追加。
 	6.0		すべてを選択を追加。すべてをコピーがiOSでスタイルが付くのを修正。
@@ -468,6 +472,8 @@ ver. 9.0
 			行ソート結果の最後の行に改行を付加するように変更。
 	1.2.0	まで変更履歴書かなかった
 -->
+
+<form name="outputForm"><label id="outputLabel"></label></form>
 
 </td>
 </tr>

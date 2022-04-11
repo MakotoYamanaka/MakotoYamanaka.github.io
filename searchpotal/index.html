@@ -42,8 +42,6 @@ function getFocus(retry){
 		if(keyStr == "keyword"){
 			document.title = document.title + "　" + valueStr;
 			document.keywordForm.keywordText.value = valueStr;
-		//}else if( keyStr == "keyword2" ){
-		//	document.keywordForm2.keywordText2.value = valueStr;
 		}
 	}
 	// 最初（retry==0）は必ず呼ぶ。その時点でフォーカスを得ていてもその後外される場合があるため。
@@ -101,17 +99,6 @@ function searchWithKeyword( topURL, prefixURL, suffixURL, is_escape ){
 	//}
 }
 /*--------------------------------------------------
-	keywordText2 も使う場合
-*/
-/*function searchWithKeyword2( topURL, prefixURL, middleURL, suffixURL, is_escape1, is_escape2 ){
-	if( is_escape2 ){
-		keyword2 = escape( document.keywordForm2.keywordText2.value );
-	}else{
-		keyword2 = encodeURIComponent( document.keywordForm2.keywordText2.value );
-	}
-	searchWithKeyword( topURL, prefixURL, middleURL + keyword2 + suffixURL, is_escape1 );
-}*/
-/*--------------------------------------------------
 	URLなら開く そうでなければGoogle検索
 */
 function searchWithDefault(){
@@ -146,7 +133,6 @@ function searchWithDefault(){
 */
 function clearKeywords(){
 	document.keywordForm.keywordText.value="";
-	//document.keywordForm2.keywordText2.value="";
 	document.keywordForm.keywordText.focus();
 }
 </script>
@@ -159,15 +145,11 @@ function clearKeywords(){
 <table style="height:100%;width:100%;margin:0 auto;"><tr><td> <table class="_body" style="width:100%;text-align:center;margin:0 auto;">
 <!--================================================================================================
 		キーワード入力FORM
-		※ keywordFormにkeywordText,keywordText2両方入れるとonSubmitが動作しない
 -->
 <tr><td>
 <form name="keywordForm" method="" action="" onSubmit='searchWithDefault(); return false;'>
 	<input class="_body" type="text" value="" name="keywordText" style="width:96%;text-align:center;">
 </form>
-<!--<form name="keywordForm2" method="" action="" onSubmit='searchWithDefault(); return false;'>
-	<input class="_body" type="text" value="" name="keywordText2" style="width:96%;text-align:center;">
-</form>-->
 <!--================================================================================================
 		新規タブで開くチェックボックス
 -->
@@ -288,30 +270,6 @@ Google<br>
 	>
 </td></tr>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		価格検索
--->
-<tr bgcolor='#B0C0D0'><td>
-価格<br>
-<input class="_body" type="button" name="kakakucom" value="価格.com"
-	onClick='searchWithKeyword(
-	"https://kakaku.com/",
-	"https://kakaku.com/search_results/?query=",
-	"", true )'
-	>
-<input class="_body" type="button" name="bestgate" value="ベストゲート"
-	onClick='searchWithKeyword(
-	"https://www.bestgate.net/",
-	"https://www.bestgate.net/search.phtml?word=",
-	"", false )'
-	>
-<input class="_body" type="button" name="yahooAuctions" value="Yahoo!オークション"
-	onClick='searchWithKeyword(
-	"https://auctions.yahoo.co.jp/",
-	"https://auctions.yahoo.co.jp/search/search?auccat=&p=",
-	"", false )'
-	>
-</td></tr>
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		商品検索
 -->
 <tr><td>
@@ -340,11 +298,11 @@ Google<br>
 	"http://search.shopping.yahoo.co.jp/search?p=",
 	"", false )'
 	>
-<input class="_body" type="button" name="tsutaya" value="TSUTAYA"
+<input class="_body" type="button" name="kakakucom" value="価格.com"
 	onClick='searchWithKeyword(
-	"https://tsutaya.tsite.jp/",
-	"https://tsutaya.tsite.jp/search?k=",
-	"", false )'
+	"https://kakaku.com/",
+	"https://kakaku.com/search_results/?query=",
+	"", true )'
 	>
 <input class="_body" type="button" name="apple" value=""
 	onClick='searchWithKeyword(
@@ -489,20 +447,7 @@ Google<br>
 		その他サイト
 -->
 <tr bgcolor='#B0C0D0'><td>
-その他サイト<br>
-<!--<input class="_body" type="button" name="yahooTransit" value="Yahoo!路線情報-乗換案内"
-	onClick='searchWithKeyword2(
-	"https://transit.yahoo.co.jp/",
-	"https://transit.yahoo.co.jp/search/result?from=",
-	"&to=",
-	"", false, false )'
-	>-->
-<input class="_body" type="button" name="kasitime" value="歌詞タイム"
-	onClick='searchWithKeyword(
-	"http://www.kasi-time.com/",
-	"http://www.kasi-time.com/allsearch.php?cx=partner-pub-4761826397918753%3A15xhs36anpl&cof=FORID%3A10&q=",
-	"", false )'
-	>
+その他<br>
 <input class="_body" type="button" name="twitter" value="Twitter"
 	onClick='searchWithKeyword(
 	"https://twitter.com/",
@@ -519,10 +464,11 @@ Google<br>
 -->
 <tr><td>
 <font color="#778899" style="font-size:70%;">
-	<p>ver. 26.0</p>
+	<p>ver. 27.0</p>
 	<p>クエリの仕様: keyword=入力フィールド</p>
 </font>
 <!-- searchpotal
+	27.0	ベストゲート、Yahoo!オークション、TSUTAYA、歌詞タイム廃止。
 	26.0	Amazon、ヨドバシ.comを更新。
 	25.0	佐川急便を更新。ヤマト運輸をクロネコヤマトに＆更新。
 	24.0	FreeBSD 日本語マニュアルを廃止。ヤマト運輸を更新。

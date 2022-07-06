@@ -15,10 +15,33 @@
 	</style>
 </head>
 
+<script type="text/javascript">
+function getFocus(){
+	document.textareaForm.editTextarea.focus();
+	// textクエリ指定があれば入れる。
+	var queryFullStr = document.URL.split('?').pop();
+	if(queryFullStr.length <= 0){
+		return;
+	}
+	var queryArr = queryFullStr.split('&');
+	for(i=0; i < queryArr.length; i++){
+		var queryStr = queryArr[i];
+		var kvArr = queryStr.split('=');
+		
+		var keyStr = kvArr[0];
+		var valueStr = decodeURIComponent(kvArr[1]);
+		
+		if(keyStr == "text"){
+			document.textareaForm.editTextarea.value = valueStr;
+		}
+	}
+}
+</script>
+
 <!--================================================================================================
 		ここからBODY
 -->
-<body onload='document.textareaForm.editTextarea.focus();' style="height:100%;margin:0;background:#B8D8C8;">
+<body onload='getFocus();' style="height:100%;margin:0;background:#B8D8C8;">
 
 <!--================================================================================================
 		NO SCRIPT
@@ -455,9 +478,11 @@ function sortCharacters(){
 </form> <!-- name="buttonsForm" -->
 
 <font color="#779988" style="font-size:70%;">
-<br>ver. 10.0
+	<p>ver. 11.0</p>
+	<p>クエリの仕様: text=入力テキスト</p>
 </font>
 <!--
+	11.0	textクエリによる入力フィールドの初期化機能を追加。
 	10.0	検索ポータル：リンクのHTML表示を追加。
 	9.0		JavaScriptとして実行：実行結果をアラート表示しないように変更。
 	8.0		検索ポータル追加。

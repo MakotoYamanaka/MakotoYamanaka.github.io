@@ -164,6 +164,7 @@ function searchpotal(){
 			html = html + '<br><a href="' + urlStr + '" target="_blank">' + lineArray[i] + '</a>';
 		}
 	}
+	html = html + '<br>';//iPadでボトムバーと被る場合があるため1行余白を設ける。
 	document.getElementById('outputLabel').innerHTML = html;
 }
 /*--------------------------------------------------
@@ -212,9 +213,9 @@ function addToParagraphs(){
 	document.textareaForm.editTextarea.value = setString;
 }
 /*--------------------------------------------------
-	URLとして開く
+	URLを開く
 */
-function openAsURL(){
+function openURLs(){
 	// 行単位で分割
 	var lineArray = document.textareaForm.editTextarea.value.split("\n");
 	if( lineArray.length <= 0 ){
@@ -223,11 +224,8 @@ function openAsURL(){
 	// 各行を補正
 	var displayURL = ""; //ユーザ確認表示用文字列
 	for( var i=(lineArray.length - 1); 0 <= i; i-- ){
-		// 空行なら省く
-		if( lineArray[i].length <= 0 ){
-			lineArray.splice(i,1);
-		}else{
-			// 2ch表記を修正
+		if(lineArray[i].includes("://")){
+			// 5ch表記を修正
 			if( lineArray[i].indexOf("ttp:") == 0 ){
 				lineArray[i] = "h" + lineArray[i];
 			}else if( lineArray[i].indexOf("ttps:") == 0 ){
@@ -238,6 +236,8 @@ function openAsURL(){
 			lineArray[i] = encodeURI( lineArray[i] );
 			// displayURLに追加(逆順なので前に追加)
 			displayURL = "•" + lineArray[i] + "\n" + displayURL;
+		}else{ //それ以外は省く
+			lineArray.splice(i,1);
 		}
 	}
 	// ユーザ確認
@@ -250,6 +250,29 @@ function openAsURL(){
 	for( var i=0; i < lineArray.length; i++ ){
 		window.open( lineArray[i], "_blank" );
 	}
+}
+/*--------------------------------------------------
+	URLからリンクを作成
+*/
+function makeLinks(){
+	var lineArray = document.textareaForm.editTextarea.value.split("\n");
+	var html = "";
+	for(var i=0; i<lineArray.length; i++){
+		if(lineArray[i].includes("://")){
+			// 5ch表記を修正
+			if( lineArray[i].indexOf("ttp:") == 0 ){
+				lineArray[i] = "h" + lineArray[i];
+			}else if( lineArray[i].indexOf("ttps:") == 0 ){
+				lineArray[i] = "h" + lineArray[i];
+			}
+			// URL表記にエンコード
+			// ※ encodeURIComponent() だと「:」や「/」までエンコードしてしまうのでencodeURI
+			lineArray[i] = encodeURI( lineArray[i] );
+			html = html + '<br><a href="' + lineArray[i] + '" target="_blank">' + lineArray[i] + '</a>';
+		}
+	}
+	html = html + '<br>';//iPadでボトムバーと被る場合があるため1行余白を設ける。
+	document.getElementById('outputLabel').innerHTML = html;
 }
 /*--------------------------------------------------
 	行の前の空白を削除
@@ -449,8 +472,11 @@ function sortCharacters(){
 <input class="_body" type="button" name="行頭と行末に追加" value="行頭と行末に追加"
 	onClick='addToParagraphs()'
 	>
-<input class="_body" type="button" name="URLとして開く" value="URLとして開く"
-	onClick='openAsURL()'
+<input class="_body" type="button" name="URLを開く" value="URLを開く"
+	onClick='openURLs()'
+	>
+<input class="_body" type="button" name="URLからリンクを作成" value="URLからリンクを作成"
+	onClick='makeLinks()'
 	>
 <!-- trim系はFirefox 3.5の新機能(非標準) -->
 <input class="_body" type="button" name="行の前の空白を削除" value="行の前の空白を削除"
@@ -478,10 +504,11 @@ function sortCharacters(){
 </form> <!-- name="buttonsForm" -->
 
 <font color="#779988" style="font-size:70%;">
-	<p>ver. 11.0</p>
+	<p>ver. 12.0</p>
 	<p>クエリの仕様: text=入力テキスト</p>
 </font>
 <!--
+	12.0	「URLからリンクを作成」を追加。「URLとして開く」を「URLを開く」に変更。
 	11.0	textクエリによる入力フィールドの初期化機能を追加。
 	10.0	検索ポータル：リンクのHTML表示を追加。
 	9.0		JavaScriptとして実行：実行結果をアラート表示しないように変更。

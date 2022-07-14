@@ -164,7 +164,7 @@ function searchpotal(){
 			html = html + '<br><a href="' + urlStr + '" target="_blank">' + lineArray[i] + '</a>';
 		}
 	}
-	html = html + '<br>';//iPadでボトムバーと被る場合があるため1行余白を設ける。
+	html = html + '<br>　';//iPadでボトムバーと被る場合があるため1行余白を設ける。
 	document.getElementById('outputLabel').innerHTML = html;
 }
 /*--------------------------------------------------
@@ -271,7 +271,7 @@ function makeLinks(){
 			html = html + '<br><a href="' + lineArray[i] + '" target="_blank">' + lineArray[i] + '</a>';
 		}
 	}
-	html = html + '<br>';//iPadでボトムバーと被る場合があるため1行余白を設ける。
+	html = html + '<br>　';//iPadでボトムバーと被る場合があるため1行余白を設ける。
 	document.getElementById('outputLabel').innerHTML = html;
 }
 /*--------------------------------------------------
@@ -504,11 +504,11 @@ function sortCharacters(){
 </form> <!-- name="buttonsForm" -->
 
 <font color="#779988" style="font-size:70%;">
-	<p>ver. 12.0</p>
+	<p>ver. 12.1</p>
 	<p>クエリの仕様: text=入力テキスト</p>
 </font>
 <!--
-	12.0	「URLからリンクを作成」を追加。「URLとして開く」を「URLを開く」に変更。
+	12.1	「URLからリンクを作成」を追加。「URLとして開く」を「URLを開く」に変更。
 	11.0	textクエリによる入力フィールドの初期化機能を追加。
 	10.0	検索ポータル：リンクのHTML表示を追加。
 	9.0		JavaScriptとして実行：実行結果をアラート表示しないように変更。

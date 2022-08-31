@@ -87,6 +87,39 @@ function clearAll(){
 	document.textareaForm.editTextarea.focus();
 }
 /*==================================================================================================
+		検索処理
+*/
+/*--------------------------------------------------
+	検索
+*/
+function search(topUrlStr, urlPrefixStr, urlSuffixStr = "", escapeWord = false){
+	var txt = document.textareaForm.editTextarea.value;
+	var winName = document.buttonsForm.searchNewTab.checked ? "_blank" : "_top";
+	// 空ならトップページを開いて終了。
+	if(txt.length <= 0){
+		window.open(topUrlStr, winName);
+		return;
+	}
+	// 使用する行だけにする。
+	var lineArray = txt.split("\n");
+	var wordArray = [];
+	for(var i=0; i<lineArray.length; i++){
+		if(lineArray[i].length > 0 && !wordArray.includes(lineArray[i])){ wordArray.push(lineArray[i]); }
+	}
+	// 検索語が複数の場合は常に新規タブ。
+	if(wordArray.length > 1){ winName = "_blank"; }
+	// 開く＆リンク作成。
+	var linkOnly = document.buttonsForm.searchLinkOnly.checked;
+	var html = "";
+	for(var i=0; i<wordArray.length; i++){
+		var urlStr = urlPrefixStr + (escapeWord ? escape(wordArray[i]) : encodeURIComponent(wordArray[i])) + urlSuffixStr;
+		if(!linkOnly){ window.open(urlStr,winName); }
+		html += '<br><a href="' + urlStr + '" target="' + winName + '">' + wordArray[i] + '</a>';
+	}
+	html += '<br>　';//iPadでボトムバーと被る場合があるため1行余白を設ける。
+	document.getElementById('outputLabel').innerHTML = html;
+}
+/*==================================================================================================
 		解析処理
 */
 /*--------------------------------------------------
@@ -131,42 +164,26 @@ function changeToUpperCase(){
 	URI encode,decode ...
 */
 function changeTo_escape(){
-	document.textareaForm.editTextarea.value = escape( document.textareaForm.editTextarea.value );
+	document.textareaForm.editTextarea.value = escape(document.textareaForm.editTextarea.value);
 }
 function changeTo_encodeURI(){
-	document.textareaForm.editTextarea.value = encodeURI( document.textareaForm.editTextarea.value );
+	document.textareaForm.editTextarea.value = encodeURI(document.textareaForm.editTextarea.value);
 }
 function changeTo_encodeURIComponent(){
-	document.textareaForm.editTextarea.value = encodeURIComponent( document.textareaForm.editTextarea.value );
+	document.textareaForm.editTextarea.value = encodeURIComponent(document.textareaForm.editTextarea.value);
 }
 function changeTo_unescape(){
-	document.textareaForm.editTextarea.value = unescape( document.textareaForm.editTextarea.value );
+	document.textareaForm.editTextarea.value = unescape(document.textareaForm.editTextarea.value);
 }
 function changeTo_decodeURI(){
-	document.textareaForm.editTextarea.value = decodeURI( document.textareaForm.editTextarea.value );
+	document.textareaForm.editTextarea.value = decodeURI(document.textareaForm.editTextarea.value);
 }
 function changeTo_decodeURIComponent(){
-	document.textareaForm.editTextarea.value = decodeURIComponent( document.textareaForm.editTextarea.value );
+	document.textareaForm.editTextarea.value = decodeURIComponent(document.textareaForm.editTextarea.value);
 }
 /*==================================================================================================
 		行単位編集処理
 */
-/*--------------------------------------------------
-	検索ポータル
-*/
-function searchpotal(){
-	var lineArray = document.textareaForm.editTextarea.value.split("\n");
-	var html = "";
-	for(var i=0; i<lineArray.length; i++){
-		if(lineArray[i].length > 0){
-			var urlStr = "https://makotoyamanaka.github.io/searchpotal/?keyword=" + encodeURIComponent(lineArray[i]);
-			window.open(urlStr,'_blank');
-			html = html + '<br><a href="' + urlStr + '" target="_blank">' + lineArray[i] + '</a>';
-		}
-	}
-	html = html + '<br>　';//iPadでボトムバーと被る場合があるため1行余白を設ける。
-	document.getElementById('outputLabel').innerHTML = html;
-}
 /*--------------------------------------------------
 	行ソート
 */
@@ -180,7 +197,7 @@ function sortParagraphs(){
 	var setString = "";
 	for( var i=0; i < lineArray.length; i++ ){
 		if( lineArray[i].length > 0 ){
-			setString = setString + lineArray[i] + "\n";
+			setString += lineArray[i] + "\n";
 		}
 	}
 	document.textareaForm.editTextarea.value = setString;
@@ -206,9 +223,9 @@ function addToParagraphs(){
 	var setString = "";
 	for( var i=0; i < lineArray.length; i++ ){
 		if( i > 0 ){
-			setString = setString + "\n";
+			setString += "\n";
 		}
-		setString = setString + prefixString + lineArray[i] + suffixString;
+		setString += prefixString + lineArray[i] + suffixString;
 	}
 	document.textareaForm.editTextarea.value = setString;
 }
@@ -268,10 +285,10 @@ function makeLinks(){
 			// URL表記にエンコード
 			// ※ encodeURIComponent() だと「:」や「/」までエンコードしてしまうのでencodeURI
 			lineArray[i] = encodeURI( lineArray[i] );
-			html = html + '<br><a href="' + lineArray[i] + '" target="_blank">' + lineArray[i] + '</a>';
+			html += '<br><a href="' + lineArray[i] + '" target="_blank">' + lineArray[i] + '</a>';
 		}
 	}
-	html = html + '<br>　';//iPadでボトムバーと被る場合があるため1行余白を設ける。
+	html += '<br>　';//iPadでボトムバーと被る場合があるため1行余白を設ける。
 	document.getElementById('outputLabel').innerHTML = html;
 }
 /*--------------------------------------------------
@@ -284,9 +301,9 @@ function trimParagraphsLeft(){
 	var setString = "";
 	for( var i=0; i < lineArray.length; i++ ){
 		if( i > 0 ){
-			setString = setString + "\n";
+			setString += "\n";
 		}
-		setString = setString + lineArray[i].trimLeft();
+		setString += lineArray[i].trimLeft();
 	}
 	document.textareaForm.editTextarea.value = setString;
 }
@@ -300,9 +317,9 @@ function trimParagraphsRight(){
 	var setString = "";
 	for( var i=0; i < lineArray.length; i++ ){
 		if( i > 0 ){
-			setString = setString + "\n";
+			setString += "\n";
 		}
-		setString = setString + lineArray[i].trimRight();
+		setString += lineArray[i].trimRight();
 	}
 	document.textareaForm.editTextarea.value = setString;
 }
@@ -316,9 +333,9 @@ function trimParagraphs(){
 	var setString = "";
 	for( var i=0; i < lineArray.length; i++ ){
 		if( i > 0 ){
-			setString = setString + "\n";
+			setString += "\n";
 		}
-		setString = setString + lineArray[i].trim();
+		setString += lineArray[i].trim();
 	}
 	document.textareaForm.editTextarea.value = setString;
 }
@@ -340,13 +357,13 @@ function insertToCharacters(){
 		var lineString = lineArray[li];
 		var newLineStr = "";
 		for(var ci=0; ci < lineString.length; ci++){
-			newLineStr = newLineStr + (ci<=0 ? "" : insertString) + lineString.charAt(ci);
+			newLineStr += (ci<=0 ? "" : insertString) + lineString.charAt(ci);
 		}
 		
 		if(li + 1 < lineArray.length){
-			setString = setString + newLineStr + "\n";
+			setString += newLineStr + "\n";
 		}else{
-			setString = setString + newLineStr;
+			setString += newLineStr;
 		}
 	}
 	document.textareaForm.editTextarea.value = setString;
@@ -368,12 +385,12 @@ function sortCharacters(){
 		
 		lineString = "";
 		for( var ci=0; ci < charArray.length; ci++ ){
-			lineString = lineString + charArray[ci];
+			lineString += charArray[ci];
 		}
 		if( li + 1 < lineArray.length ){
-			setString = setString + lineString + "\n";
+			setString += lineString + "\n";
 		}else{
-			setString = setString + lineString;
+			setString += lineString;
 		}
 	}
 	document.textareaForm.editTextarea.value = setString;
@@ -415,9 +432,21 @@ function sortCharacters(){
 	>
 <br>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		検索
+-->
+検索<br>
+<label><input type="checkbox" name="searchNewTab">1行の場合も新規タブ</label>
+<label><input type="checkbox" name="searchLinkOnly">リンク作成のみ</label><br>
+<input class="_body" type="button" name="Google" value="Google"
+	onClick='search("https://www.google.com/","https://www.google.com/search?q=")'
+	>
+<input class="_body" type="button" name="検索ポータル" value="検索ポータル"
+	onClick='search("https://makotoyamanaka.github.io/searchpotal/","https://makotoyamanaka.github.io/searchpotal/?keyword=")'
+	>
+<br>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		解析処理
 -->
-<br>
 解析<br>
 <input class="_body" type="button" name="文字数を数える" value="文字数を数える"
 	onClick='countCharacters()'
@@ -429,7 +458,6 @@ function sortCharacters(){
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		文字変換処理
 -->
-<br>
 文字変換<br>
 <input class="_body" type="button" name="小文字にする" value="小文字にする"
 	onClick='changeToLowerCase()'
@@ -461,11 +489,7 @@ function sortCharacters(){
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		行単位処理
 -->
-<br>
 行単位<br>
-<input class="_body" type="button" name="検索ポータル" value="検索ポータル"
-	onClick='searchpotal()'
-	>
 <input class="_body" type="button" name="行ソート" value="行ソート"
 	onClick='sortParagraphs()'
 	>
@@ -492,7 +516,6 @@ function sortCharacters(){
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		その他処理
 -->
-<br>
 その他<br>
 <input class="_body" type="button" name="文字間に挿入" value="文字間に挿入"
 	onClick='insertToCharacters()'
@@ -504,10 +527,11 @@ function sortCharacters(){
 </form> <!-- name="buttonsForm" -->
 
 <font color="#779988" style="font-size:70%;">
-	<p>ver. 12.1</p>
+	<p>ver. 13</p>
 	<p>クエリの仕様: text=入力テキスト</p>
 </font>
 <!--
+	13		Google検索追加。内部実装としては検索ポータルの機能を統合。今後はバージョンの.0は付けない。
 	12.1	「URLからリンクを作成」を追加。「URLとして開く」を「URLを開く」に変更。
 	11.0	textクエリによる入力フィールドの初期化機能を追加。
 	10.0	検索ポータル：リンクのHTML表示を追加。

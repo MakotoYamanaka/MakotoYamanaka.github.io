@@ -24,12 +24,11 @@
 
 <script type="text/javascript">
 function _onload(){
-	// Mac/Winでは編集系ボタンは非表示。
-	if(navigator.userAgent.includes('Macintosh') || navigator.userAgent.includes('Windows')){
-		document.editForm.copy.style.display = 'none';
-		document.editForm.selectAll.style.display = 'none';
-		document.editForm.copyAll.style.display = 'none';
-		document.editForm.clear.style.display = 'none';
+	// Macではコピー/選択系ボタンは非表示。
+	if(navigator.maxTouchPoints <= 0){
+		document.editForm.copyButton.style.display = 'none';
+		document.editForm.selectAllButton.style.display = 'none';
+		document.editForm.copyAllButton.style.display = 'none';
 	}
 	// textクエリ指定があれば入れる。
 	var queryFullStr = document.URL.split('?').pop();
@@ -424,27 +423,29 @@ function sortCharacters(){
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		編集
 -->
-<input class="_button" type="button" name="copy" value="コピー" onClick='copySelection()'>
-<input class="_button" type="button" name="selectAll" value="すべてを選択" onClick='selectAll()'>
-<input class="_button" type="button" name="copyAll" value="すべてをコピー" onClick='copyAll()'>
-　
-<input class="_button" type="button" name="clear" value="クリア" onClick='clearAll()'>
 <br>
+<input class="_button" type="button" name="copyButton" value="コピー" onClick='copySelection()'>
+<input class="_button" type="button" name="selectAllButton" value="すべてを選択" onClick='selectAll()'>
+<input class="_button" type="button" name="copyAllButton" value="すべてをコピー" onClick='copyAll()'>
+　
+<input class="_button" type="button" name="clearButton" value="クリア" onClick='clearAll()'>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		検索
 -->
+<br>
 検索
 <label class="_checkbox"><input class="_body" type="checkbox" name="searchNewTab">1行の場合も新規タブ</label>
-<label class="_checkbox"><input class="_body" type="checkbox" name="searchLinkOnly">リンク作成のみ</label><br>
+<label class="_checkbox"><input class="_body" type="checkbox" name="searchLinkOnly">リンク作成のみ</label>
+<br>
 <!--~~~~~~~~~~Google~~~~~~~~~~-->
 <input class="_button" type="button" name="google" value="Google" tabindex="1" onClick='search(
 	"https://www.google.com/",
 	"https://www.google.com/search?q=")'>
-<input class="_button" type="button" name="googleJp" value="Google日本語のみ" onClick='search(
+<input class="_button" type="button" name="googleJp" value="Google日本語のみ" tabindex="1" onClick='search(
 	"https://www.google.com/",
 	"https://www.google.com/search?q=",
 	"&lr=lang_ja")'>
-<input class="_button" type="button" name="googleNoJp" value="Google日本語以外" onClick='search(
+<input class="_button" type="button" name="googleNoJp" value="Google日本語以外" tabindex="1" onClick='search(
 	"https://www.google.com/",
 	"https://www.google.com/search?q=",
 	"&lr=-lang_ja")'>
@@ -579,17 +580,17 @@ function sortCharacters(){
 <input class="_button" type="button" name="sagawa" value="佐川急便" onClick='search(
 	"https://www.e-service.sagawa-exp.co.jp/",
 	"https://k2k.sagawa-exp.co.jp/p/web/okurijosearch.do?okurijoNo=")'>
-<br>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		解析処理
 -->
+<br>
 解析<br>
 <input class="_button" type="button" name="countChar" value="文字数を数える" onClick='countCharacters()'>
 <input class="_button" type="button" name="doJS" value="JavaScriptとして実行" onClick='evalAsJavaScript()'>
-<br>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		文字変換処理
 -->
+<br>
 文字変換<br>
 <input class="_button" type="button" name="lowerCase" value="小文字にする" onClick='changeToLowerCase()'>
 <input class="_button" type="button" name="upperCase" value="大文字にする" onClick='changeToUpperCase()'>
@@ -601,33 +602,33 @@ function sortCharacters(){
 <input class="_button" type="button" name="unescape" value="unescape" onClick='changeTo_unescape()'>
 <input class="_button" type="button" name="decodeURI" value="decodeURI" onClick='changeTo_decodeURI()'>
 <input class="_button" type="button" name="decodeURIComponent" value="decodeURIComponent" onClick='changeTo_decodeURIComponent()'>
-<br>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		行単位処理
 -->
+<br>
 行単位<br>
 <input class="_button" type="button" name="sortPara" value="行ソート" onClick='sortParagraphs()'>
 <input class="_button" type="button" name="addToPara" value="行頭と行末に追加" onClick='addToParagraphs()'>
-<input class="_button" type="button" name="openURLs" value="URLを開く" onClick='openURLs()'>
-<input class="_button" type="button" name="makeLinks" value="URLからリンクを作成" onClick='makeLinks()'>
+<input class="_button" type="button" name="openURLsButton" value="URLを開く" onClick='openURLs()'>
+<input class="_button" type="button" name="makeLinksButton" value="URLからリンクを作成" onClick='makeLinks()'>
 <!-- trim系はFirefox 3.5の新機能(非標準) -->
 <input class="_button" type="button" name="trimParaLeft" value="行の前の空白を削除" onClick='trimParagraphsLeft()'>
 <input class="_button" type="button" name="trimParaRight" value="行の後ろの空白を削除" onClick='trimParagraphsRight()'>
 <input class="_button" type="button" name="trimPara" value="行の前後の空白を削除" onClick='trimParagraphs()'>
-<br>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		その他処理
 -->
+<br>
 その他<br>
 <input class="_button" type="button" name="insertToChar" value="文字間に挿入" onClick='insertToCharacters()'>
 <input class="_button" type="button" name="sortChar" value="文字ソート" onClick='sortCharacters()'>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<br>
+<label id="outputLabel" style="font-family:monospace;font-size:100%;"></label>
 </form> <!-- name="editForm" -->
 
-<form name="outputForm"><label id="outputLabel" style="font-family:monospace;font-size:100%;"></label></form>
-
 <font color="#708090" style="font-family:monospace;font-size:70%;">
-	<p>ver. 3</p>
+	<p>ver. 3.1</p>
 	<p>クエリの仕様: text=入力テキスト</p>
 </font>
 <!--

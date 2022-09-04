@@ -24,12 +24,16 @@
 
 <script type="text/javascript">
 function _onload(){
-	// Mac：コピー/選択系ボタンは要らないので非表示。
+	// Mac
 	if(navigator.maxTouchPoints <= 0){
+		// コピー/選択系ボタンは要らないので非表示。
 		document.editForm.copyButton.style.display = 'none';
 		document.editForm.selectAllButton.style.display = 'none';
 		document.editForm.copyAllButton.style.display = 'none';
-	}else{// iOS：より狭くしないとスクロールバーが被る。
+		document.getElementById('editButtonsSpace').style.display = 'none';
+	}else{// iOS
+		document.getElementById('headerSpace').style.display = 'none';
+		// より狭くしないとスクロールバーが被る。
 		document.editForm.editTextarea.style.width = "94%";
 	}
 	// textクエリ指定があれば入れる。
@@ -421,6 +425,7 @@ function sortCharacters(){
 		ここからFORM
 -->
 <form name="editForm" method="" action="" onSubmit="">
+<label id="headerSpace"><br></label>
 <textarea name="editTextarea" rows=30 wrap=virtual tabindex="1" style="width:98%;font-family:monospace;font-size:14px;"></textarea>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		編集
@@ -429,7 +434,7 @@ function sortCharacters(){
 <input class="_button" type="button" name="copyButton" value="コピー" onClick='copySelection()'>
 <input class="_button" type="button" name="selectAllButton" value="すべてを選択" onClick='selectAll()'>
 <input class="_button" type="button" name="copyAllButton" value="すべてをコピー" onClick='copyAll()'>
-　
+<label id="editButtonsSpace">　</label>
 <input class="_button" type="button" name="clearButton" value="クリア" onClick='clearAll()'>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		検索
@@ -630,7 +635,7 @@ function sortCharacters(){
 </form> <!-- name="editForm" -->
 
 <font color="#708090" style="font-family:monospace;font-size:70%;">
-	<p>ver. 3.3</p>
+	<p>ver. 3.4</p>
 	<p>クエリの仕様: text=入力テキスト</p>
 </font>
 <!--

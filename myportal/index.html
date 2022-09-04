@@ -24,11 +24,13 @@
 
 <script type="text/javascript">
 function _onload(){
-	// Macではコピー/選択系ボタンは非表示。
+	// Mac：コピー/選択系ボタンは要らないので非表示。
 	if(navigator.maxTouchPoints <= 0){
 		document.editForm.copyButton.style.display = 'none';
 		document.editForm.selectAllButton.style.display = 'none';
 		document.editForm.copyAllButton.style.display = 'none';
+	}else{// iOS：より狭くしないとスクロールバーが被る。
+		document.editForm.editTextarea.style.width = "94%";
 	}
 	// textクエリ指定があれば入れる。
 	var queryFullStr = document.URL.split('?').pop();
@@ -412,14 +414,14 @@ function sortCharacters(){
 <!--================================================================================================
 		ここからTABLE(1x1)
 -->
-<table class="_body" style="height:100%;width:100%;text-align:center;">
+<table class="_body" style="width:100%;text-align:center;">
 <tr>
 <td>
 <!--================================================================================================
 		ここからFORM
 -->
 <form name="editForm" method="" action="" onSubmit="">
-<textarea name="editTextarea" rows=30 wrap=virtual tabindex="1" style="width:94%;font-family:monospace;font-size:14px;"></textarea>
+<textarea name="editTextarea" rows=30 wrap=virtual tabindex="1" style="width:98%;font-family:monospace;font-size:14px;"></textarea>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		編集
 -->
@@ -628,7 +630,7 @@ function sortCharacters(){
 </form> <!-- name="editForm" -->
 
 <font color="#708090" style="font-family:monospace;font-size:70%;">
-	<p>ver. 3.2</p>
+	<p>ver. 3.3</p>
 	<p>クエリの仕様: text=入力テキスト</p>
 </font>
 <!--

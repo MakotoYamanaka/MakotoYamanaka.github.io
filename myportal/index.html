@@ -128,15 +128,18 @@ function search(topUrlStr, urlPrefixStr, urlSuffixStr = "", escapeWord = false){
 	}
 	// 検索語が複数の場合は常に新規タブ。
 	if(wordArray.length > 1){ winName = "_blank"; }
-	// 開く＆リンク作成。
-	var linkOnly = document.editForm.searchLinkOnly.checked;
+	// 開くorリンク作成。
+	var makeLink = document.editForm.searchMakeLinks.checked;
 	var html = "";
 	for(var i=0; i<wordArray.length; i++){
 		var urlStr = urlPrefixStr + (escapeWord ? escape(wordArray[i]) : encodeURIComponent(wordArray[i])) + urlSuffixStr;
-		if(!linkOnly){ window.open(urlStr,winName); }
-		html += '<br><a href="' + urlStr + '" target="' + winName + '">' + wordArray[i] + '</a>';
+		if(makeLink){
+			html += '<br><a href="' + urlStr + '" target="' + winName + '">' + wordArray[i] + '</a>';
+		}else{
+			window.open(urlStr,winName);
+		}
 	}
-	document.getElementById('outputLabel').innerHTML = html;
+	if(makeLink){ document.getElementById('outputLabel').innerHTML = html; }
 }
 /*==================================================================================================
 		解析処理
@@ -442,7 +445,7 @@ function sortCharacters(){
 <br>
 検索
 <label class="_checkbox"><input class="_body" type="checkbox" name="searchNewTab">1行の場合も新規タブ</label>
-<label class="_checkbox"><input class="_body" type="checkbox" name="searchLinkOnly">リンク作成のみ</label>
+<label class="_checkbox"><input class="_body" type="checkbox" name="searchMakeLinks">リンク作成</label>
 <br>
 <!--~~~~~~~~~~Google~~~~~~~~~~-->
 <input class="_button" type="button" name="google" value="Google" tabindex="1" onClick='search(
@@ -635,7 +638,7 @@ function sortCharacters(){
 </form> <!-- name="editForm" -->
 
 <font color="#708090" style="font-family:monospace;font-size:70%;">
-	<p>ver. 3.5</p>
+	<p>ver. 3.6</p>
 	<p>クエリの仕様: text=入力テキスト</p>
 </font>
 <!--

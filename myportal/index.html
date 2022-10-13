@@ -26,13 +26,18 @@
 function _onload(){
 	// Mac
 	if(navigator.maxTouchPoints <= 0){
+		document.editForm.editTextarea.rows = 20;
 		// コピー/選択系ボタンは要らないので非表示。
 		document.editForm.copyButton.style.display = 'none';
 		document.editForm.selectAllButton.style.display = 'none';
 		document.editForm.copyAllButton.style.display = 'none';
 		document.getElementById('editButtonsSpace').style.display = 'none';
+		document.getElementById('editButtonsSpace2').style.display = 'none';
+		document.editForm.decreaseEditTextButton.style.display = 'none';
+		document.editForm.increaseEditTextButton.style.display = 'none';
 	}else{// iOS
 		document.getElementById('headerSpace').style.display = 'none';
+		document.editForm.editTextarea.rows = 5;
 		// より狭くしないとスクロールバーが被る。
 		document.editForm.editTextarea.style.width = "94%";
 	}
@@ -105,6 +110,17 @@ function clearAll(){
 	document.getElementById('outputLabel').innerHTML = "";
 	// フォーカスが外れているので戻しておく
 	document.editForm.editTextarea.focus();
+}
+/*--------------------------------------------------
+	表示行数の増減
+*/
+function increaseEditText(){
+	document.editForm.editTextarea.rows += 5;
+}
+function decreaseEditText(){
+	var r = document.editForm.editTextarea.rows - 5;
+	if(r < 5){ r=1; }
+	document.editForm.editTextarea.rows = r;
 }
 /*==================================================================================================
 		検索処理
@@ -429,7 +445,7 @@ function sortCharacters(){
 -->
 <form name="editForm" method="" action="" onSubmit="">
 <label id="headerSpace"><br></label>
-<textarea name="editTextarea" rows=30 wrap=virtual tabindex="1" style="width:98%;font-family:monospace;font-size:14px;"></textarea>
+<textarea name="editTextarea" rows=10 wrap=virtual tabindex="1" style="width:98%;font-family:monospace;font-size:14px;"></textarea>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		編集
 -->
@@ -439,6 +455,9 @@ function sortCharacters(){
 <input class="_button" type="button" name="copyAllButton" value="すべてをコピー" onClick='copyAll()'>
 <label id="editButtonsSpace">　</label>
 <input class="_button" type="button" name="clearButton" value="クリア" onClick='clearAll()'>
+<label id="editButtonsSpace2">　</label>
+<input class="_button" type="button" name="decreaseEditTextButton" value="▲" onClick='decreaseEditText()'>
+<input class="_button" type="button" name="increaseEditTextButton" value="▼" onClick='increaseEditText()'>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		検索
 -->
@@ -638,11 +657,12 @@ function sortCharacters(){
 </form> <!-- name="editForm" -->
 
 <font color="#708090" style="font-family:monospace;font-size:70%;">
-	<p>ver. 3.7</p>
+	<p>ver. 4</p>
 	<p>クエリの仕様: text=入力テキスト</p>
 </font>
 <!--
-	3		Mac/Winでは編集系ボタンは非表示に。タブフォーカスの移動順を調整。
+	4		テキストエリアリサイズボタン（Macでは非表示）を追加。
+	3		Macでは編集系ボタンは非表示に。タブフォーカスの移動順を調整。
 	2		検索ポータルの実装を移植。いくつかのサイトは廃止。
 	1		テキスト編集を元に新規作成。
 -->

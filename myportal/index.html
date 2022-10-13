@@ -115,7 +115,9 @@ function clearAll(){
 	表示行数の増減
 */
 function increaseEditText(){
-	document.editForm.editTextarea.rows += 5;
+	var r = document.editForm.editTextarea.rows;
+	if(r < 5){ r=5; }else{ r+=5; }
+	document.editForm.editTextarea.rows = r;
 }
 function decreaseEditText(){
 	var r = document.editForm.editTextarea.rows - 5;
@@ -657,7 +659,7 @@ function sortCharacters(){
 </form> <!-- name="editForm" -->
 
 <font color="#708090" style="font-family:monospace;font-size:70%;">
-	<p>ver. 4</p>
+	<p>ver. 4.1</p>
 	<p>クエリの仕様: text=入力テキスト</p>
 </font>
 <!--

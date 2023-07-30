@@ -28,6 +28,7 @@ function _onload(){
 	if(navigator.maxTouchPoints <= 0){
 		document.editForm.editTextarea.rows = 20;
 		// コピー/選択系ボタンは要らないので非表示。
+		document.editForm.pasteButton.style.display = 'none';
 		document.editForm.copyButton.style.display = 'none';
 		document.editForm.selectAllButton.style.display = 'none';
 		document.editForm.copyAllButton.style.display = 'none';
@@ -101,6 +102,13 @@ function selectAll(){
 function copyAll(){
 	selectAll();
 	copySelection();
+}
+/*--------------------------------------------------
+	ペースト
+*/
+function _paste(){
+	document.editForm.editTextarea.focus();
+	document.execCommand('paste');
 }
 /*--------------------------------------------------
 	クリア
@@ -452,6 +460,7 @@ function sortCharacters(){
 		編集
 -->
 <br>
+<input class="_button" type="button" name="pasteButton" value="ペースト" onClick='_paste()'>
 <input class="_button" type="button" name="copyButton" value="コピー" onClick='copySelection()'>
 <input class="_button" type="button" name="selectAllButton" value="すべてを選択" onClick='selectAll()'>
 <input class="_button" type="button" name="copyAllButton" value="すべてをコピー" onClick='copyAll()'>
@@ -659,10 +668,11 @@ function sortCharacters(){
 </form> <!-- name="editForm" -->
 
 <font color="#708090" style="font-family:monospace;font-size:70%;">
-	<p>ver. 4.2</p>
+	<p>ver. 5</p>
 	<p>クエリの仕様: text=入力テキスト</p>
 </font>
 <!--
+	5		ペーストボタンを追加。
 	4		テキストエリアリサイズボタン（Macでは非表示）を追加。
 	3		Macでは編集系ボタンは非表示に。タブフォーカスの移動順を調整。
 	2		検索ポータルの実装を移植。いくつかのサイトは廃止。

@@ -24,8 +24,7 @@
 
 <script type="text/javascript">
 function _onload(){
-	// Mac
-	if(navigator.maxTouchPoints <= 0){
+	if(navigator.maxTouchPoints <= 0){//Mac
 		document.editForm.editTextarea.rows = 20;
 		// コピー/選択系ボタンは要らないので非表示。
 		document.editForm.pasteButton.style.display = 'none';
@@ -36,8 +35,7 @@ function _onload(){
 		document.getElementById('editButtonsSpace2').style.display = 'none';
 		document.editForm.decreaseEditTextButton.style.display = 'none';
 		document.editForm.increaseEditTextButton.style.display = 'none';
-	}else{// iOS
-		document.getElementById('headerSpace').style.display = 'none';
+	}else{//iOS
 		document.editForm.editTextarea.rows = 5;
 		// より狭くしないとスクロールバーが被る。
 		document.editForm.editTextarea.style.width = "94%";
@@ -454,30 +452,31 @@ function sortCharacters(){
 		ここからFORM
 -->
 <form name="editForm" method="" action="" onSubmit="">
-<label id="headerSpace"><br></label>
-<textarea name="editTextarea" rows=10 wrap=virtual tabindex="1" style="width:98%;font-family:monospace;font-size:14px;"></textarea>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		編集
 -->
-<br>
-<input class="_button" type="button" name="pasteButton" value="ペースト" onClick='_paste()'>
-<input class="_button" type="button" name="copyButton" value="コピー" onClick='copySelection()'>
-<input class="_button" type="button" name="selectAllButton" value="すべてを選択" onClick='selectAll()'>
-<input class="_button" type="button" name="copyAllButton" value="すべてをコピー" onClick='copyAll()'>
+<input class="_button" type="button" name="pasteButton" value="ペースト" onClick='_paste()' tabindex="1">
+<input class="_button" type="button" name="copyButton" value="コピー" onClick='copySelection()' tabindex="1">
+<input class="_button" type="button" name="selectAllButton" value="すべてを選択" onClick='selectAll()' tabindex="1">
+<input class="_button" type="button" name="copyAllButton" value="すべてをコピー" onClick='copyAll()' tabindex="1">
 <label id="editButtonsSpace">　</label>
-<input class="_button" type="button" name="clearButton" value="クリア" onClick='clearAll()'>
+<input class="_button" type="button" name="clearButton" value="クリア" onClick='clearAll()' tabindex="1">
 <label id="editButtonsSpace2">　</label>
-<input class="_button" type="button" name="decreaseEditTextButton" value="▲" onClick='decreaseEditText()'>
-<input class="_button" type="button" name="increaseEditTextButton" value="▼" onClick='increaseEditText()'>
+<input class="_button" type="button" name="decreaseEditTextButton" value="▲" onClick='decreaseEditText()' tabindex="1">
+<input class="_button" type="button" name="increaseEditTextButton" value="▼" onClick='increaseEditText()' tabindex="1">
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		テキストエリア
+-->
+<br>
+<textarea name="editTextarea" rows=10 wrap=virtual tabindex="1" style="width:98%;font-family:monospace;font-size:14px;"></textarea>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		検索
 -->
 <br>
-検索
-<label class="_checkbox"><input class="_body" type="checkbox" name="searchNewTab">1行の場合も新規タブ</label>
-<label class="_checkbox"><input class="_body" type="checkbox" name="searchMakeLinks">リンク作成</label>
-<br>
+<label class="_checkbox"><input class="_body" type="checkbox" name="searchNewTab" tabindex="2">1行の場合も新規タブ</label>
+<label class="_checkbox"><input class="_body" type="checkbox" name="searchMakeLinks" tabindex="2">リンク作成</label>
 <!--~~~~~~~~~~Google~~~~~~~~~~-->
+<br>
 <input class="_button" type="button" name="google" value="Google" tabindex="1" onClick='search(
 	"https://www.google.com/",
 	"https://www.google.com/search?q=")'>
@@ -533,7 +532,7 @@ function sortCharacters(){
 	"http://www.bing.com/",
 	"http://www.bing.com/images/search?q=")'>
 <!--~~~~~~~~~~商品~~~~~~~~~~-->
-<br>&#128722;<!--🛒-->
+<br>&#128722;<!--🛒--><br>
 <input class="_button" type="button" name="amazon" value="Amazon" onClick='search(
 	"https://www.amazon.co.jp/",
 	"https://www.amazon.co.jp/s?k=")'>
@@ -555,7 +554,7 @@ function sortCharacters(){
 	"http://www.apple.com/jp/",
 	"http://www.apple.com/jp/search/?q=")'>
 <!--~~~~~~~~~~技術情報~~~~~~~~~~-->
-<br>&#9935;<!--⛏-->
+<br>&#9935;<!--⛏--><br>
 <input class="_button" type="button" name="googleAppleDev" value="DeveloperをGoogle検索" onClick='search(
 	"https://developer.apple.com/jp/",
 	"https://www.google.com/search?q=",
@@ -576,7 +575,7 @@ function sortCharacters(){
 	"https://developer.mozilla.org/ja",
 	"https://developer.mozilla.org/ja/search?q=")'>
 <!--~~~~~~~~~~百科事典~~~~~~~~~~-->
-<br>&#128218;<!--📚-->
+<br>&#128218;<!--📚--><br>
 <input class="_button" type="button" name="wikipedia" value="Wikipedia" onClick='search(
 	"https://ja.wikipedia.org/",
 	"https://ja.wikipedia.org/w/index.php?search=")'>
@@ -590,7 +589,7 @@ function sortCharacters(){
 	"http://dic.pixiv.net/",
 	"http://dic.pixiv.net/search?query=")'>
 <!--~~~~~~~~~~その他サイト~~~~~~~~~~-->
-<br>&#128250;<!--📺-->
+<br>&#128250;<!--📺--><br>
 <input class="_button" type="button" name="youtube" value="YouTube" onClick='search(
 	"http://www.youtube.com/",
 	"http://www.youtube.com/results?search_query=")'>
@@ -610,7 +609,7 @@ function sortCharacters(){
 	"https://twitter.com/",
 	"https://twitter.com/search?q=")'>
 <!--~~~~~~~~~~配達状況~~~~~~~~~~-->
-<br>&#128230;<!--📦-->
+<br>&#128230;<!--📦--><br>
 <input class="_button" type="button" name="kuronekoyamato" value="クロネコヤマト" onClick='search(
 	"https://cmypage.kuronekoyamato.co.jp/",
 	"http://jizen.kuronekoyamato.co.jp/jizen/servlet/crjz.b.NQ0010?id=")'>
@@ -623,15 +622,13 @@ function sortCharacters(){
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		解析処理
 -->
-<br>
-解析<br>
+<br>解析<br>
 <input class="_button" type="button" name="countChar" value="文字数を数える" onClick='countCharacters()'>
 <input class="_button" type="button" name="doJS" value="JavaScriptとして実行" onClick='evalAsJavaScript()'>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		文字変換処理
 -->
-<br>
-文字変換<br>
+<br>文字変換<br>
 <input class="_button" type="button" name="lowerCase" value="小文字にする" onClick='changeToLowerCase()'>
 <input class="_button" type="button" name="upperCase" value="大文字にする" onClick='changeToUpperCase()'>
 <br>
@@ -645,8 +642,7 @@ function sortCharacters(){
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		行単位処理
 -->
-<br>
-行単位<br>
+<br>行単位<br>
 <input class="_button" type="button" name="sortPara" value="行ソート" onClick='sortParagraphs()'>
 <input class="_button" type="button" name="addToPara" value="行頭と行末に追加" onClick='addToParagraphs()'>
 <input class="_button" type="button" name="openURLsButton" value="URLを開く" onClick='openURLs()'>
@@ -658,8 +654,7 @@ function sortCharacters(){
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		その他処理
 -->
-<br>
-その他<br>
+<br>その他<br>
 <input class="_button" type="button" name="insertToChar" value="文字間に挿入" onClick='insertToCharacters()'>
 <input class="_button" type="button" name="sortChar" value="文字ソート" onClick='sortCharacters()'>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -668,10 +663,11 @@ function sortCharacters(){
 </form> <!-- name="editForm" -->
 
 <font color="#708090" style="font-family:monospace;font-size:70%;">
-	<p>ver. 5</p>
+	<p>ver.6</p>
 	<p>クエリの仕様: text=入力テキスト</p>
 </font>
 <!--
+	6		編集系ボタンをテキストエリアの上に。
 	5		ペーストボタンを追加。
 	4		テキストエリアリサイズボタン（Macでは非表示）を追加。
 	3		Macでは編集系ボタンは非表示に。タブフォーカスの移動順を調整。
